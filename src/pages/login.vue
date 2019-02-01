@@ -16,7 +16,7 @@
 </template>
 
 <script scoped>
-import topNav from '../components/top-nav'
+import topNav from '@/components/top-nav'
 export default {
   components: {
       topNav

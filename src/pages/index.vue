@@ -1,24 +1,24 @@
 <template>
   <div class="index-page">
     <top-nav title="轻松阅读" :showBack="false"></top-nav>
-   <div class="wrapper">
+    <div class="wrapper">
       <swiper :options="swiperOption" ref="mySwiper">
-      <swiper-slide v-for="(item,index) in bannerList" :key="index">
-        <img :src="item.url" alt>
-      </swiper-slide>
-      <div class="swiper-pagination" slot="pagination"></div>
-    </swiper>
-   </div>
-  <recommend recommendTitle="热门读物" :bookList="books"></recommend>
-    <recommend recommendTitle="热门作家"  spanTitle="东野圭吾" :bookList="books"></recommend>
+        <swiper-slide v-for="(item,index) in bannerList" :key="index">
+          <img :src="item.url" alt>
+        </swiper-slide>
+        <div class="swiper-pagination" slot="pagination"></div>
+      </swiper>
+    </div>
+    <recommend recommendTitle="热门读物" :bookList="books"></recommend>
+    <recommend recommendTitle="热门作家" spanTitle="东野圭吾" :bookList="books"></recommend>
     <bottom-nav></bottom-nav>
   </div>
 </template>
 
 <script>
-import bottomNav from "../components/bottom-nav"
-import topNav from "../components/top-nav"
-import recommend from "../components/recommend"
+import bottomNav from "@/components/bottom-nav";
+import topNav from "@/components/top-nav";
+import recommend from "@/components/recommend";
 
 export default {
   components: {
@@ -28,40 +28,49 @@ export default {
   },
   data() {
     return {
-      books:[{
-        title:'解忧杂货铺',
-        author:'东野圭吾',
-        cover_img:'/static/imgs/jyzhp.png'
-      },{
-        title:'恶意',
-        author:'东野圭吾',
-        cover_img:'/static/imgs/ey.png'
-      },{
-        title:'秘密',
-        author:'东野圭吾',
-        cover_img:'/static/imgs/mm.png'
-      },{
-        title:'时生',
-        author:'东野圭吾',
-        cover_img:'/static/imgs/sf.png'
-      }],
+      books: [
+        {
+          id: 0,
+          title: "解忧杂货铺",
+          author: "东野圭吾",
+          cover_img: "/static/imgs/jyzhp.png"
+        },
+        {
+          id: 1,
+          title: "恶意",
+          author: "东野圭吾",
+          cover_img: "/static/imgs/ey.png"
+        },
+        {
+          id: 2,
+          title: "秘密",
+          author: "东野圭吾",
+          cover_img: "/static/imgs/mm.png"
+        },
+        {
+          id: 3,
+          title: "时生",
+          author: "东野圭吾",
+          cover_img: "/static/imgs/sf.png"
+        }
+      ],
       swiperOption: {
         pagination: {
-          el: '.swiper-pagination',
-          clickable:true
+          el: ".swiper-pagination",
+          clickable: true
         },
-        loop:true,
+        loop: true,
         speed: 500
       },
       bannerList: [
         {
-          url: '/static/imgs/banner1.png'
+          url: "/static/imgs/banner1.png"
         },
         {
-          url: '/static/imgs/banner2.png'
+          url: "/static/imgs/banner2.png"
         },
         {
-          url: '/static/imgs/banner3.png'
+          url: "/static/imgs/banner3.png"
         }
       ]
     };
@@ -73,10 +82,10 @@ export default {
 
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style  lang='less' scoped>
-.index-page{
-  padding-bottom:4rem;
+.index-page {
+  padding-bottom: 4rem;
 }
-.wrapper /deep/ .swiper-pagination-bullet-active{
+.wrapper /deep/ .swiper-pagination-bullet-active {
   background: #fff;
 }
 .scroll-nav {

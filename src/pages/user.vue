@@ -13,9 +13,8 @@
   </div>
 </template>
 <script>
-import Vue from "vue"
 import topNav from "@/components/top-nav"
-import bottomNav from "../components/bottom-nav"
+import bottomNav from "@/components/bottom-nav"
 
 export default {
   components: {

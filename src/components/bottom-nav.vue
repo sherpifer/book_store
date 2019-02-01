@@ -22,7 +22,7 @@
 <style lang="less">
   .footer {
     z-index: 99999;
-    background: #f1f1f1;
+    background: #fff;
     color: #c4c3c3;
     position: fixed;
     bottom: 0;

@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import mock from '@/mock/index'
 
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
