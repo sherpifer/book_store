@@ -8,53 +8,61 @@ import loginComponent from '@/pages/login'
 import shelfCompoment from '@/pages/shelf'
 import detailComponent from '@/pages/book-detail'
 import registerComponent from '@/pages/register'
+import settingComponent from '@/pages/setting'
 
 import store from '@/store/store'
 Vue.use(Router)
 
 export default new Router({
-    routes: [{
-        path: '*',
-        redirect: '/index'
+  routes: [{
+    path: '*',
+    redirect: '/index'
+  }, {
+    path: '/index',
+    name: 'index',
+    component: indexComponent,
+    redirect: '/index/one',
+    children: [{
+      path: 'one',
+      name: 'one',
+      component: oneComponent
     }, {
-        path: '/index',
-        name: 'index',
-        component: indexComponent,
-        redirect: '/index/one',
-        children: [{
-            path: 'one',
-            name: 'one',
-            component: oneComponent
-        }, {
-            path: 'two',
-            name: 'two',
-            component: twoComponent
-        }]
-    }, {
-        path: '/detail:id',
-        name: 'detail',
-        component: detailComponent
-    }, {
-        path: '/shelf',
-        name: 'shelf',
-        component: shelfCompoment,
-        meta: {
-            requireAuth: true
-        }
-    }, {
-        path: '/user',
-        name: 'user',
-        component: userComponent,
-        meta: {
-            requireAuth: true
-        }
-    }, {
-        path: '/login',
-        name: 'login',
-        component: loginComponent
-    }, {
-        path: '/register',
-        name: 'register',
-        component: registerComponent
+      path: 'two',
+      name: 'two',
+      component: twoComponent
     }]
+  }, {
+    path: '/detail:id',
+    name: 'detail',
+    component: detailComponent
+  }, {
+    path: '/shelf',
+    name: 'shelf',
+    component: shelfCompoment,
+    meta: {
+      requireAuth: true
+    }
+  }, {
+    path: '/user',
+    name: 'user',
+    component: userComponent,
+    meta: {
+      requireAuth: true
+    }
+  }, {
+    path: '/setting',
+    name: 'setting',
+    component: settingComponent,
+    meta: {
+      requireAuth: true
+    }
+  }, {
+    path: '/login',
+    name: 'login',
+    component: loginComponent
+  }, {
+    path: '/register',
+    name: 'register',
+    component: registerComponent
+  }]
 })

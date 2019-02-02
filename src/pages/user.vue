@@ -1,7 +1,7 @@
 <template>
   <div class="user-page">
     <top-nav :title="user_name">
-      <span class="iconfont icon-shezhi"></span>
+      <router-link class="iconfont icon-shezhi" to="/setting"></router-link>
     </top-nav>
     <div class="avatar-box">
       <img class="avatar" src="/static/imgs/user.png">
@@ -68,6 +68,7 @@
     height: 100vh;
     .icon-shezhi{
       font-size:.4rem;
+      color:black;
     }
     .avatar-box {
       width: 100vw;

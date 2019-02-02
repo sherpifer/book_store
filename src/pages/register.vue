@@ -4,9 +4,11 @@
     <div class="register-form">
       <p class="form-item">
         <label>用户名</label>
-        <input type="text" v-model="username" placeholder="3位以上字母组成" @blur="checkUserName">
+        <input type="text" v-model="user_name" placeholder="3位以上字母组成" maxlength="15" @blur="checkUserName">
+        <span class="user_name_only_icon iconfont icon-dui" v-if="user_name.length>=3&&user_name_only"></span>
       </p>
-      <p class="err_tip" v-if="username_err">● 请输入3位字母以上组成的用户名</p>
+      <p class="err_tip" v-if="user_name_err">● 请输入3位字母以上组成的用户名</p>
+      <p class="err_tip" v-if="user_name.length>3&&!user_name_err&&!user_name_only">● 用户名已存在</p>
       <p class="form-item">
         <label>密码</label>
         <input type="password" v-model="pwd" placeholder="6位以上字符组成" @blur="checkPwd">
@@ -24,6 +26,10 @@
 </template>
 
 <script scoped>
+  import Service from '@/service/service'
+  import {
+    Toast
+  } from 'mint-ui';
   import topNav from "@/components/top-nav"
   export default {
     components: {
@@ -31,37 +37,53 @@
     },
     data() {
       return {
-        username: '',
+        user_name: '',
         pwd: '',
         repeat_pwd: '',
-        username_err: false,
+        user_name_err: false,
+        user_name_only: false,
         pwd_err: false,
         repeat_pwd_err: false
       }
     },
-    mounted(){
+    mounted() {
+  
     },
     methods: {
       goBack() {
         this.$router.back(-1)
       },
       checkUserName() {
-        if (/([a-z]|[A-Z]){3,}/.test(this.username)) {
-          this.username_err = false
+        if (this.user_name && /^([a-z]|[A-Z]){3,}$/.test(this.user_name)) {
+          this.user_name_err = false
+          // 检测用户名的唯一性
+          Service.checkAccount(this.user_name).then((res) => {
+            if (res.data.users.length == 0) {
+              this.user_name_only = true
+            } else {
+              this.user_name_only = false
+            }
+          })
         } else {
-          this.username_err = true
+          this.user_name_only = false
+          this.user_name_err = true
         }
       },
       checkPwd() {
-        if (/\w{6,}/.test(this.pwd)) {
+        if (this.pwd && /^\w{6,}$/.test(this.pwd)) {
           this.pwd_err = false
         } else {
           this.pwd_err = true
         }
-        this.repeat_pwd && this.checkRepeatPwd()
+        if (!this.repeat_pwd) return
+        if (this.pwd == this.repeat_pwd.substring(0, this.pwd.length)) {
+          this.repeat_pwd_err = false
+        } else {
+          this.repeat_pwd_err = true
+        }
       },
       checkRepeatPwd() {
-        if (this.pwd == this.repeat_pwd) {
+        if (this.repeat_pwd == this.pwd) {
           this.repeat_pwd_err = false
         } else {
           this.repeat_pwd_err = true
@@ -69,16 +91,49 @@
       },
       register() {
         this.checkUserName()
-        this.checkPwd() 
+        this.checkPwd()
         this.checkRepeatPwd()
-        if (this.pwd && this.repeat_pwd && this.username && !this.username_err && !this.pwd_err && !this.repeat_pwd_err) {
-          alert('注册成功，请登录')
-          this.$router.back(-1)
+        if (this.pwd && this.repeat_pwd && this.user_name && this.user_name_only && !this.user_name_err && !this.pwd_err && !this.repeat_pwd_err) {
+          Service.register( {
+            user_name: this.user_name,
+            password: this.pwd
+          }).then(res => {
+            if (res.data.retCode == 0) {
+              let instance = Toast({
+                message: '注册成功，请登录',
+                iconClass: 'icon icon-success'
+              });
+              setTimeout(() => {
+                instance.close()
+                this.$router.back(-1)
+              }, 2000)
+            }
+          })
         } else {
           console.log('请根据要求注册')
         }
       }
-    }
+    },
+    watch: {
+      user_name: function(curVal, oldVal) {　
+        if (curVal.length < 3) return
+        this.checkUserName()
+      },
+      pwd: function(curVal, oldVal) {
+        if (curVal && this.repeat_pwd) {
+          this.checkPwd()
+        }
+      },
+      repeat_pwd: function(curVal, oldVal) {
+        if (curVal && this.pwd) {
+          if (this.repeat_pwd == this.pwd.substring(0, this.repeat_pwd.length)) {
+            this.repeat_pwd_err = false
+          } else {
+            this.repeat_pwd_err = true
+          }
+        }
+      }
+    },
   }
 </script>
 
@@ -100,12 +155,21 @@
     }
     .register-form {
       margin-top: 1rem;
+      position: relative;
       p.form-item {
+        position: relative;
         width: 78%;
         margin: 0.4rem auto;
         display: flex;
         line-height: 0.8rem;
         justify-content: space-between;
+        .user_name_only_icon {
+          position: absolute;
+          color: #2d992d;
+          right: 0.1rem;
+          font-size: .5rem;
+          font-weight: 600;
+        }
         label {
           width: 1.2rem;
         }

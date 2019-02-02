@@ -3,19 +3,24 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-    state: {
-        is_login: true,
-        user_name: 'sherpifer'
+  state: {
+    is_login: false,
+    user_name: ''
+  },
+  mutations: {
+    loginSuccess(state, params) {
+      this.state.is_login = true
+      console.log('loginSuccess', params)
+      this.state.user_name = params.user_name
     },
-    mutations: {
-        loginSuccess(state) {
-            this.state.is_login = true
-            console.log('登录成功')
-        },
-        loginFaild(state) {
-            this.state.is_login = false
-        }
+    loginFaild(state) {
+      this.state.is_login = false
     },
-    actions: {}
+    logout(state) {
+      this.state.is_login = false
+      this.state.user_name = ''
+    }
+  },
+  actions: {}
 })
 export default store

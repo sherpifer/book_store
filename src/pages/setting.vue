@@ -1,0 +1,83 @@
+<template>
+  <div>
+    <top-nav title='设置' :showBack='true'></top-nav>
+    <div class="cell-box">
+      <mt-cell title="阅读时不锁屏">
+        <mt-switch></mt-switch>
+      </mt-cell>
+      <mt-cell title="首行缩进">
+        <mt-switch></mt-switch>
+      </mt-cell>
+    </div>
+    <div class="cell-box big-size-cell-box">
+      <mt-cell title="接收新关注提醒" label="开启后，当其他用户关注你时,将会收到提醒">
+        <mt-switch></mt-switch>
+      </mt-cell>
+      <mt-cell title="接收新书上架提醒" label="开启后，将会收到书城新书上架的更新提醒">
+        <mt-switch></mt-switch>
+      </mt-cell>
+      <mt-cell title="限时免费更新提醒" label="开启后，将会收到书城免费栏目的更新提醒">
+        <mt-switch></mt-switch>
+      </mt-cell>
+    </div>
+    <div class="logout-btn" @click="logout">
+      <mt-cell title="退出登录"></mt-cell>
+    </div>
+  </div>
+</template>
+
+<script>
+  import Vue from 'vue'
+  import topNav from '@/components/top-nav'
+  import store from '@/store/store'
+  import {
+    Switch,
+    Cell,
+    MessageBox
+  } from 'mint-ui';
+  Vue.component(Switch.name, Switch, Cell.name, Cell);
+  
+  export default {
+    components: {
+      topNav
+    },
+    data() {
+      return {}
+    },
+    methods: {
+      logout() {
+        MessageBox.confirm('确定要退出该账号吗').then(action => {
+          store.commit('logout')
+          this.$router.push({
+            name: 'login',
+            params: {
+              go_back_home: true
+            }
+          })
+        })
+      }
+    }
+  
+  }
+</script>
+
+<style lang="less" scoped>
+  .cell-box {
+    margin-bottom: .3rem;
+  }
+  
+  .logout-btn {
+    text-align: center;
+    color: red;
+  }
+  
+  .big-size-cell-box {
+    /deep/ .mint-cell-wrapper {
+      padding-top: .35rem;
+      padding-bottom: .3rem;
+      background-image: none;
+    }
+  }
+</style>
+
+

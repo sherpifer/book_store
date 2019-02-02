@@ -1,12 +1,12 @@
 <template>
   <div class="login-page">
-    <top-nav title="登陆" :showBack="true">
+    <top-nav title="登陆" :showBack="true" :goBackHome="go_back_home">
       <router-link to="/register" class="register-btn">注册</router-link>
     </top-nav>
     <div class="login-form">
       <p>
         <label>用户名</label>
-        <input type="text" v-model="username">
+        <input type="text" v-model="user_name">
       </p>
       <p>
         <label>密码</label>
@@ -19,29 +19,57 @@
 </template>
 
 <script scoped>
+  import Service from '@/service/service'
   import store from '@/store/store'
   import topNav from '@/components/top-nav'
+  import {
+    Toast
+  } from 'mint-ui';
   export default {
     components: {
       topNav
     },
     data() {
       return {
-        username: "",
-        password: ""
+        user_name: "",
+        password: "",
+        go_back_home: false
       }
     },
     methods: {
       login() {
-        store.commit('loginSuccess')
-        //跳转到需要登录前提的目标的页面
-        this.$router.replace({
-          path: this.$route.query.redirect
+        if (!this.user_name || !this.password) return
+        Service.login({
+          user_name: this.user_name,
+          password: this.password
+        }).then((res) => {
+          console.log(res)
+          if (res.data.retCode == 0) {
+            store.commit('loginSuccess', res.data.user)
+            //跳转到需要登录前提的目标的页面
+            console.log('跳转到需要登录前提的目标的页面')
+            this.$router.replace({
+              path: this.$route.query.redirect
+            })
+          } else if (res.data.retCode == 40401) {
+            Toast({
+              message: '用户名或密码有误',
+              duration: 3000
+            })
+          } else {
+            Toast({
+              message: '出错啦，请稍后再试',
+              duration: 3000
+            })
+          }
         })
       }
     },
-    mounted() {
-      console.log(this.$route)
+    created() {
+      //设置top-nav的返回为返回首页
+      if (this.$route.params && this.$route.params.go_back_home) {
+        this.go_back_home = true
+      }
     }
   }
 </script>

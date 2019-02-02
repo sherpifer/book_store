@@ -3,7 +3,7 @@
     <top-nav :showBack="true">
       <!-- 加入书架 -->
       <p v-if="fav" class="fav-btn" @click="removeFav">移出书架 <span class="red-bg iconfont icon-shoucang2"></span></p>
-     <p v-else class="fav-btn" @click="addFav">加入书架 <span class=" iconfont icon-shoucang1"></span></p>
+      <p v-else class="fav-btn" @click="addFav">加入书架 <span class=" iconfont icon-shoucang1"></span></p>
     </top-nav>
     <img class="cover-img" :src="book_detail.cover_img" alt>
     <p class="book-title">{{book_detail.title}}</p>
@@ -37,12 +37,13 @@
 </template>
 
 <script>
+  import Service from '@/service/service'
   import topNav from "@/components/top-nav";
   import rateStart from "@/components/rate-start";
   export default {
     data() {
       return {
-        fav:false,
+        fav: false,
         book_detail: {
           title: "",
           author: "",
@@ -60,7 +61,7 @@
       rateStart
     },
     mounted() {
-      this.axios.get("/detail/" + this.$route.params.id).then(res => {
+      Service.getBookDetail(this.$route.params.id).then(res => {
         this.book_detail = res.data.book
         if (this.book_detail.desc.length > 45) {
           this.book_detail.complete_desc = this.book_detail.desc
@@ -91,8 +92,8 @@
   .fav-btn {
     .iconfont {
       font-size: .35rem;
-       &.red-bg{
-        color:#ea7287;
+      &.red-bg {
+        color: #ea7287;
       }
     }
   }

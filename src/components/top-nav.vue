@@ -18,20 +18,32 @@
       showBack: {
         type: Boolean,
         default: false
+      },
+      goBackHome: {
+        type: Boolean,
+        default: false
       }
     },
     data() {
-      return {};
+      return {}
     },
     methods: {
       back() {
-        this.$router.back(-1);
+        console.log('this.go_back_home', this.goBackHome)
+        if (this.goBackHome) {
+          console.log('用户拒绝登录，回到首页')
+          this.$router.push({
+            path: '/index'
+          })
+        } else {
+          this.$router.back(-1)
+        }
       }
     },
     mouted() {
-      console.log(this.showBack);
+      console.log(this.showBack)
     }
-  };
+  }
 </script>
 
 <style lang="less" scoped>
@@ -62,7 +74,7 @@
       transform: translateY(-50%);
       left: 0.2rem;
     }
-    .right-box{
+    .right-box {
       font-size: 0.32rem;
       position: absolute;
       top: 50%;
