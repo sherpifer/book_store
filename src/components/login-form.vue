@@ -1,9 +1,7 @@
 <template>
-  <div class="login-page">
-    <top-nav title="登陆" :showBack="true" :goBackHome="go_back_home">
-      <router-link to="/register" class="register-btn">注册</router-link>
-    </top-nav>
+  <div class="back-drop">
     <div class="login-form">
+      <span class="iconfont icon-guanbi1" @click="close"></span>
       <p>
         <label>用户名</label>
         <input type="text" v-model="user_name">
@@ -13,22 +11,18 @@
         <input type="password" v-model="password">
       </p>
       <div class="submit-btn" @click="login">登录</div>
-      <span class="forget-pwd-btn">忘记密码</span>
+      <span class="forget-pwd-btn">注册</span>
     </div>
   </div>
 </template>
 
-<script scoped>
+<script>
   import Service from '@/service/service'
   import store from '@/store/store'
-  import topNav from '@/components/top-nav'
-  import {
+    import {
     Toast
   } from 'mint-ui'
   export default {
-    components: {
-      topNav
-    },
     data() {
       return {
         user_name: "",
@@ -47,10 +41,7 @@
           if (res.data.retCode == 0) {
             store.commit('loginSuccess', res.data.user)
             //跳转到需要登录前提的目标的页面
-            console.log('跳转到需要登录前提的目标的页面')
-            this.$router.replace({
-              path: this.$route.query.redirect
-            })
+            this.$emit('loginSuccess')
           } else if (res.data.retCode == 40401) {
             Toast({
               message: '用户名或密码有误',
@@ -63,36 +54,44 @@
             })
           }
         })
-      }
-    },
-    created() {
-      //设置top-nav的返回为返回首页
-      if (this.$route.params && this.$route.params.go_back_home) {
-        this.go_back_home = true
+      },
+      close() {
+        this.$emit('close')
       }
     }
+  
   }
 </script>
 
-<style lang="less" scoped>
-  .register-btn {
-    color: black;
-    font-size: .3rem;
-  }
-  
-  .login-page {
+<style lang='less' scoped>
+  .back-drop {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     width: 100vw;
     height: 100vh;
-    h3 {
-      margin: 0;
-      text-align: center;
-      background: #0e5387;
-      color: #fff;
-      padding: .2rem 0;
-      width: 100vw;
-    }
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
     .login-form {
-      margin-top: 1rem;
+      width: 90vw;
+      background: #fff;
+      padding-top: 1.5rem;
+      padding-bottom: .5rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: .5rem;
+      .icon-guanbi1 {
+        position: absolute;
+        top: .1rem;
+        right: .1rem;
+        font-weight: 900;
+        font-size: .34rem;
+        padding: .3rem;
+      }
       p {
         width: 78%;
         margin: 0 auto;
@@ -125,10 +124,12 @@
       span.forget-pwd-btn {
         line-height: .8rem;
         display: block;
-        width: 100vw;
+        width: 100%;
         text-align: center;
         color: #328bcf;
       }
     }
   }
 </style>
+
+

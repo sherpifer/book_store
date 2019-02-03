@@ -10,7 +10,7 @@ const store = new Vuex.Store({
   mutations: {
     loginSuccess(state, params) {
       this.state.is_login = true
-      console.log('loginSuccess', params)
+      sessionStorage['is_login'] = true
       this.state.user_name = params.user_name
     },
     loginFaild(state) {
@@ -18,9 +18,14 @@ const store = new Vuex.Store({
     },
     logout(state) {
       this.state.is_login = false
+      sessionStorage['is_login'] = false
       this.state.user_name = ''
     }
   },
   actions: {}
 })
+
+if (sessionStorage['is_login'] == "true") {
+  store.state.is_login = true
+}
 export default store

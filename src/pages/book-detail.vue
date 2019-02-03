@@ -2,7 +2,7 @@
   <div>
     <top-nav :showBack="true">
       <!-- 加入书架 -->
-      <p v-if="fav" class="fav-btn" @click="removeFav">移出书架 <span class="red-bg iconfont icon-shoucang2"></span></p>
+      <p v-if="book_detail.is_fav" class="fav-btn" @click="removeFav">移出书架 <span class="red-bg iconfont icon-shoucang2"></span></p>
       <p v-else class="fav-btn" @click="addFav">加入书架 <span class=" iconfont icon-shoucang1"></span></p>
     </top-nav>
     <img class="cover-img" :src="book_detail.cover_img" alt>
@@ -33,32 +33,38 @@
         </p>
       </div>
     </div>
+  
+    <login-form v-if="showLoginForm" @loginSuccess="loginCallback" @close="closeLoginForm"></login-form>
   </div>
 </template>
 
 <script>
   import Service from '@/service/service'
-  import topNav from "@/components/top-nav";
-  import rateStart from "@/components/rate-start";
+  import store from '@/store/store'
+  import topNav from '@/components/top-nav';
+  import rateStart from '@/components/rate-start';
+  import loginForm from '@/components/login-form'
   export default {
+    components: {
+      topNav,
+      rateStart,
+      loginForm
+    },
     data() {
       return {
-        fav: false,
+        showLoginForm: false,
         book_detail: {
-          title: "",
-          author: "",
-          id: "",
-          cover_img: "",
+          title: '',
+          author: '',
+          id: '',
+          cover_img: '',
           rate: 0,
           population: 0,
-          recomment_num: 0
+          recomment_num: 0,
+          is_fav: false
         },
         showMore: false
       };
-    },
-    components: {
-      topNav,
-      rateStart
     },
     mounted() {
       Service.getBookDetail(this.$route.params.id).then(res => {
@@ -78,17 +84,42 @@
         this.showMore = false
         this.book_detail.desc = this.book_detail.complete_desc
       },
+      closeLoginForm() {
+        this.showLoginForm = false
+      },
       addFav() {
-        this.fav = true
+        if (store.state.is_login) {
+          this.postFav()
+        } else {
+          this.showLoginForm = true
+        }
+      },
+      postFav() {
+        Service.addFav({
+          book_id: this.book_detail.id
+        }).then(res => {
+          if (res.data.retCode == 0) {
+            this.book_detail.is_fav = true
+          }
+        })
       },
       removeFav() {
-        this.fav = false
+        Service.removeFav(this.book_detail.id ).then(res => {
+          if (res.data.retCode == 0) {
+            this.book_detail.is_fav =false
+          }
+        })
+      },
+      loginCallback() {
+        this.showLoginForm=false
+        console.log('登录组件触发登录成功')
+        this.postFav()
       }
     }
   };
 </script>
 
-<style lang="less" scoped>
+<style lang='less' scoped>
   .fav-btn {
     .iconfont {
       font-size: .35rem;

@@ -1,5 +1,6 @@
 var Mock = require('mockjs')
 var Random = Mock.Random
+import store from '@/store/store'
 
 /*** 设置随机的接口响应时间，10-2500毫秒 ***/
 // Mock.setup({
@@ -11,6 +12,9 @@ var user_list = [{
   "user_name": "sherpifer",
   "password": "123123"
 }]
+
+// 用户加入书架的书本
+var user_shelf_books = [{ book_id: 0 }]
 
 // 书信息
 var books_list = [{
@@ -53,12 +57,37 @@ var books_list = [{
 
 // 获取书本详情
 Mock.mock(/^\/detail\//, 'get', (options) => {
-  var book_id = options.url.match(/\/detail\/(\w+)/)[1]
+  let book_id = options.url.match(/\/detail\/(\w+)/)[1]
   let target_book = (books_list.filter(function(item) {
     return item.id == book_id
   }))[0]
   target_book.desc = Random.cparagraph(10, 15)
+    //如果用户是登录状态 检查该图书是否用户已经添加进收藏了
+  if (store.state.is_login) {
+    if (user_shelf_books.find(item => { return item.book_id == book_id })) {
+      target_book.is_fav = true
+    } else {
+      target_book.is_fav = false
+    }
+  } else {
+    target_book.is_fav = false
+  }
+  console.log('图书详情', { book: target_book })
   return { book: target_book }
+})
+
+//添加图书进书架
+Mock.mock('/shelf', 'post', (options) => {
+  let book_id = JSON.parse(options.body).book_id
+  user_shelf_books.push({ book_id: book_id })
+  return { retCode: 0 }
+})
+
+// 把图书从书架移除
+Mock.mock(/^\/shelf\//, 'delete', (options) => {
+  let book_id = options.url.match(/\/shelf\/(\d+)/)[1]
+  user_shelf_books.splice(user_shelf_books.findIndex(item => { item.id == book_id }), 1)
+  return { retCode: 0 }
 })
 
 // 检查账号的唯一性
@@ -74,14 +103,13 @@ Mock.mock(/^\/user\?user_name=/, 'get', (options) => {
 Mock.mock('/user', 'post', (options) => {
   console.log('新增用户', JSON.parse(options.body))
   user_list.push(JSON.parse(options.body))
-  console.log(user_list)
   return { retCode: 0 }
 })
 
+//登录
 Mock.mock('/login', 'post', (options) => {
   let user = JSON.parse(options.body)
   let target_user = user_list.filter((item) => {
-    console.log(item.user_name, user.user_name)
     if (item.user_name == user.user_name) {
       if (item.password == user.password) {
         return item.password == user.password
