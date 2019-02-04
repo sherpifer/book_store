@@ -36,7 +36,8 @@
         </p>
       </div>
     </div>
-    <comment-list v-if="showComments" @close="closeCommentList"></comment-list>
+    <comment-list v-if="showComments" @close="closeCommentList">
+    </comment-list>
     <login-form v-if="showLoginForm" @loginSuccess="loginCallback" @close="closeLoginForm"></login-form>
   </div>
 </template>
@@ -73,9 +74,11 @@
         showMore: false
       }
     },
-    mounted() {
+    created() {
+      console.log('11111')
       Service.getBookDetail(this.$route.params.book_id).then(res => {
         this.book_detail = res.data.book
+        console.log('======',this.book_detail.rate)
         if (this.book_detail.desc.length > 45) {
           this.book_detail.complete_desc = this.book_detail.desc
           this.book_detail.desc = this.book_detail.desc.slice(0, 45)

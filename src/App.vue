@@ -1,45 +1,22 @@
 <template>
   <div id="app">
-    <transition :name="transitionName">
-      <router-view></router-view>
-    </transition>
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive"></router-view>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"></router-view>
   </div>
 </template>
 
 <script>
-export default {
-  name: "App",
-  data() {
-    return {
-      transitionName: ""
-    };
-  }
-};
+  export default {
+    name: "App",
+    data() {
+      return {
+        transitionName: ""
+      };
+    }
+  };
 </script>
 
 <style lang="less">
-// .slide-right-enter-active,
-// .slide-right-leave-active,
-// .slide-left-enter-active,
-// .slide-left-leave-active {
-//   will-change: transform;
-//   transition: all 500ms;
-//   position: absolute;
-// }
-// .slide-right-enter {
-//   opacity: 0;
-//   transform: translate3d(-100vw, 0, 0);
-// }
-// .slide-right-leave-active {
-//   opacity: 0;
-//   transform: translate3d(100vw, 0, 0);
-// }
-// .slide-left-enter {
-//   opacity: 0;
-//   transform: translate3d(100vw, 0, 0);
-// }
-// .slide-left-leave-active {
-//   opacity: 0;
-//   transform: translate3d(-100vw, 0, 0);
-// }
 </style>

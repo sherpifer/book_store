@@ -17,7 +17,7 @@ const tipModule = {
   },
   showAlert(msg, callback) {
     MessageBox.alert(msg).then(action => {
-      callback && callback
+      callback && callback()
     })
   },
   showConfirm(msg, resolve, reject) {

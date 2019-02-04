@@ -1,6 +1,10 @@
 <template>
   <div class="back-drop">
     <div class="comment-list-box">
+      <div class="comment-card comment-entry" @click="goComment">
+        <p> <span class="iconfont icon-pingjia1"></span> 去点评</p>
+        <span class="iconfont icon-jiantouyou"></span>
+      </div>
       <div class="comment-card" v-for="(item,index) in comments" :key="index">
         <div class="content">
           {{item.content}}
@@ -23,18 +27,23 @@
   export default {
     data() {
       return {
-        comments:[]
+        comments: []
       }
     },
-    methods:{
-      close(){
+    methods: {
+      close() {
         this.$emit('close')
+      },
+      goComment(){
+        this.$router.push({
+          path:'/writecomment'
+        })
       }
     },
     created() {
       Service.getComments().then(res => {
-        if(res.data.retCode==0){
-          this.comments=res.data.comments
+        if (res.data.retCode == 0) {
+          this.comments = res.data.comments
         }
       })
     }
@@ -43,6 +52,7 @@
 
 <style lang='less' scoped>
   .back-drop {
+    padding-top: 1rem;
     width: 100vw;
     background: rgba(0, 0, 0, 0.8);
     position: fixed;
@@ -51,31 +61,43 @@
     left: 0;
     right: 0;
     z-index: 10000;
-    .close-btn{
-      position:fixed;
-      bottom:.45rem;
-      left:50%;
-      transform:translateX(-50%);
-      width:1.5rem;
-      height:1.5rem;
+    .close-btn {
+      position: fixed;
+      bottom: .45rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1.5rem;
+      height: 1.5rem;
       border-radius: 50%;
       background: rgba(0, 0, 0, 0.8);
-      display:flex;
+      display: flex;
       justify-content: center;
       align-items: center;
-      .iconfont{
-        color:#fff;
-        font-size:.6rem;
+      .iconfont {
+        color: #fff;
+        font-size: .6rem;
         font-weight: 900;
       }
     }
     .comment-list-box {
-      height:100vh;
-      width:100vw;
+      height: 100vh;
+      width: 100vw;
       overflow: scroll;
-      padding-top: 1rem;
       padding-bottom: 3rem;
       .comment-card {
+        &.comment-entry {
+          display: flex;
+          justify-content: space-between;
+          .iconfont {
+            vertical-align: middle;
+            font-weight: 900;
+            font-size: .4rem;
+            &.icon-jiantouyou {
+              color: #635b5b;
+              font-size: .2rem;
+            }
+          }
+        }
         width: 92vw;
         margin: 0 auto;
         margin-bottom: .3rem;
@@ -102,7 +124,6 @@
               vertical-align: middle;
             }
           }
-          .publish-date {}
         }
       }
     }

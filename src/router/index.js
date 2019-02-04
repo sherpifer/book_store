@@ -9,6 +9,7 @@ import shelfCompoment from '@/pages/shelf'
 import detailComponent from '@/pages/book-detail'
 import registerComponent from '@/pages/register'
 import settingComponent from '@/pages/setting'
+import writeCommentComponent from '@/pages/write-comment'
 
 import store from '@/store/store'
 Vue.use(Router)
@@ -34,7 +35,14 @@ export default new Router({
   }, {
     path: '/detail',
     name: 'detail',
+    meta: {
+      keepAlive: true
+    },
     component: detailComponent
+  }, {
+    path: '/writecomment',
+    name: 'writecomment',
+    component: writeCommentComponent
   }, {
     path: '/shelf',
     name: 'shelf',
