@@ -14,7 +14,7 @@ var user_list = [{
 }]
 
 // 用户加入书架的书本
-var user_shelf_books = [{ book_id: 0 }]
+var user_shelf_books = [{ book_id: 0 }, { book_id: 1 }, { book_id: 2 }]
 
 // 书信息
 var books_list = [{
@@ -62,7 +62,7 @@ Mock.mock(/^\/detail\//, 'get', (options) => {
     return item.id == book_id
   }))[0]
   target_book.desc = Random.cparagraph(10, 15)
-    //如果用户是登录状态 检查该图书是否用户已经添加进收藏了
+    //如果用户是登录状态 返回图书收藏
   if (store.state.is_login) {
     if (user_shelf_books.find(item => { return item.book_id == book_id })) {
       target_book.is_fav = true
@@ -72,8 +72,10 @@ Mock.mock(/^\/detail\//, 'get', (options) => {
   } else {
     target_book.is_fav = false
   }
-  console.log('图书详情', { book: target_book })
-  return { book: target_book }
+  return {
+    retCode: 0,
+    book: target_book
+  }
 })
 
 //添加图书进书架
@@ -84,10 +86,26 @@ Mock.mock('/shelf', 'post', (options) => {
 })
 
 // 把图书从书架移除
-Mock.mock(/^\/shelf\//, 'delete', (options) => {
-  let book_id = options.url.match(/\/shelf\/(\d+)/)[1]
-  user_shelf_books.splice(user_shelf_books.findIndex(item => { item.id == book_id }), 1)
+Mock.mock('/shelf', 'put', (options) => {
+  let book_ids = JSON.parse(options.body).book_ids
+  book_ids.forEach(book_id => {
+    user_shelf_books.splice(user_shelf_books.findIndex(item => { return item.book_id == book_id }), 1)
+  })
   return { retCode: 0 }
+})
+
+// 获取书架图书
+Mock.mock('/shelf', 'get', () => {
+  let shelf_books = []
+  user_shelf_books.forEach(book => {
+    shelf_books.push(books_list.find(function(item) {
+      return item.id == book.book_id
+    }))
+  })
+  return {
+    retCode: 0,
+    books: shelf_books
+  }
 })
 
 // 检查账号的唯一性
@@ -96,7 +114,10 @@ Mock.mock(/^\/user\?user_name=/, 'get', (options) => {
   let users = user_list.filter(item => {
     return item.user_name == user_name
   })
-  return { users: users }
+  return {
+    retCode: 0,
+    users: users
+  }
 })
 
 // 注册

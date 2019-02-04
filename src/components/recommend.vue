@@ -36,12 +36,10 @@
       };
     },
     methods: {
-      goDetail(id) {
+      goDetail(book_id) {
         this.$router.push({
           name: 'detail',
-          params: {
-            id
-          }
+          params: {book_id}
         })
       }
     }
@@ -61,7 +59,7 @@
       .swiper-slide {
         overflow: hidden;
         img {
-          width: 100%;
+          width: 1.8rem;
           height: 2.3rem;
         }
         .book-title {

@@ -19,10 +19,12 @@ const Service = {
   addFav(params) {
     return axios.post('/shelf', params)
   },
-  removeFav(book_id) {
-    return axios.delete(`/shelf/${book_id}`)
+  removeFav(params) {
+    return axios.put('/shelf', params)
+  },
+  getShelfBooks() {
+    return axios.get('/shelf')
   }
-
 }
 
 export default Service

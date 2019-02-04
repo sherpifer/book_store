@@ -29,7 +29,6 @@
     },
     methods: {
       back() {
-        console.log('this.go_back_home', this.goBackHome)
         if (this.goBackHome) {
           console.log('用户拒绝登录，回到首页')
           this.$router.push({

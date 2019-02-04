@@ -32,7 +32,7 @@ export default new Router({
       component: twoComponent
     }]
   }, {
-    path: '/detail:id',
+    path: '/detail',
     name: 'detail',
     component: detailComponent
   }, {

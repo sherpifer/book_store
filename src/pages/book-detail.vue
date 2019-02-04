@@ -40,9 +40,10 @@
 
 <script>
   import Service from '@/service/service'
+  import tipModule from '@/commonModules/tip-module'
   import store from '@/store/store'
-  import topNav from '@/components/top-nav';
-  import rateStart from '@/components/rate-start';
+  import topNav from '@/components/top-nav'
+  import rateStart from '@/components/rate-start'
   import loginForm from '@/components/login-form'
   export default {
     components: {
@@ -64,10 +65,10 @@
           is_fav: false
         },
         showMore: false
-      };
+      }
     },
     mounted() {
-      Service.getBookDetail(this.$route.params.id).then(res => {
+      Service.getBookDetail(this.$route.params.book_id).then(res => {
         this.book_detail = res.data.book
         if (this.book_detail.desc.length > 45) {
           this.book_detail.complete_desc = this.book_detail.desc
@@ -100,18 +101,21 @@
         }).then(res => {
           if (res.data.retCode == 0) {
             this.book_detail.is_fav = true
+            tipModule.showToast('添加成功')
           }
         })
       },
       removeFav() {
-        Service.removeFav(this.book_detail.id ).then(res => {
+        Service.removeFav({
+          book_ids: [this.book_detail.id]
+        }).then(res => {
           if (res.data.retCode == 0) {
-            this.book_detail.is_fav =false
+            this.book_detail.is_fav = false
           }
         })
       },
       loginCallback() {
-        this.showLoginForm=false
+        this.showLoginForm = false
         console.log('登录组件触发登录成功')
         this.postFav()
       }

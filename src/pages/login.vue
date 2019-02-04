@@ -19,6 +19,7 @@
 </template>
 
 <script scoped>
+  import tipModule from '@/commonModules/tip-module'
   import Service from '@/service/service'
   import store from '@/store/store'
   import topNav from '@/components/top-nav'
@@ -43,7 +44,6 @@
           user_name: this.user_name,
           password: this.password
         }).then((res) => {
-          console.log(res)
           if (res.data.retCode == 0) {
             store.commit('loginSuccess', res.data.user)
             //跳转到需要登录前提的目标的页面
@@ -52,15 +52,9 @@
               path: this.$route.query.redirect
             })
           } else if (res.data.retCode == 40401) {
-            Toast({
-              message: '用户名或密码有误',
-              duration: 3000
-            })
+            tipModule.showToast('用户名或密码有误')
           } else {
-            Toast({
-              message: '出错啦，请稍后再试',
-              duration: 3000
-            })
+            tipModule.showToast('出错啦，请稍后再试')
           }
         })
       }

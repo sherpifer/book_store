@@ -28,13 +28,13 @@
 
 <script>
   import Vue from 'vue'
+  import tipModule from '@/commonModules/tip-module'
   import topNav from '@/components/top-nav'
   import store from '@/store/store'
   import {
     Switch,
-    Cell,
-    MessageBox
-  } from 'mint-ui';
+    Cell
+  } from 'mint-ui'
   Vue.component(Switch.name, Switch, Cell.name, Cell);
   
   export default {
@@ -46,7 +46,7 @@
     },
     methods: {
       logout() {
-        MessageBox.confirm('确定要退出该账号吗').then(action => {
+        tipModule.showConfirm('确定要退出该账号吗', () => {
           store.commit('logout')
           this.$router.push({
             name: 'login',
@@ -57,7 +57,6 @@
         })
       }
     }
-  
   }
 </script>
 

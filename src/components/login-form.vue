@@ -19,7 +19,7 @@
 <script>
   import Service from '@/service/service'
   import store from '@/store/store'
-    import {
+  import {
     Toast
   } from 'mint-ui'
   export default {

@@ -27,9 +27,7 @@
 
 <script scoped>
   import Service from '@/service/service'
-  import {
-    Toast
-  } from 'mint-ui';
+  import tipModule from '@/commonModules/tip-module'
   import topNav from "@/components/top-nav"
   export default {
     components: {
@@ -94,17 +92,13 @@
         this.checkPwd()
         this.checkRepeatPwd()
         if (this.pwd && this.repeat_pwd && this.user_name && this.user_name_only && !this.user_name_err && !this.pwd_err && !this.repeat_pwd_err) {
-          Service.register( {
+          Service.register({
             user_name: this.user_name,
             password: this.pwd
           }).then(res => {
             if (res.data.retCode == 0) {
-              let instance = Toast({
-                message: '注册成功，请登录',
-                iconClass: 'icon icon-success'
-              });
+              tipModule.showToastWithIcon('注册成功，请登录', 'icon icon-success')
               setTimeout(() => {
-                instance.close()
                 this.$router.back(-1)
               }, 2000)
             }
