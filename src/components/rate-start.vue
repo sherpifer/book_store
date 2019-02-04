@@ -35,11 +35,16 @@
 
 <style lang="less">
   .rate-start {
+    display:inline-block;
+    vertical-align: middle;
+    overflow: hidden;
     span {
+      float:left;
       color: #ccc;
-      font-size: 0.3rem;
+      font-size: 0.38rem;
+      margin-right:.03rem;
       &.active {
-        color: #a79141;
+        color: #edba00;
       }
     }
   }

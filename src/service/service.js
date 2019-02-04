@@ -24,6 +24,9 @@ const Service = {
   },
   getShelfBooks() {
     return axios.get('/shelf')
+  },
+  getComments() {
+    return axios.get('/comments')
   }
 }
 
