@@ -34,9 +34,9 @@
       close() {
         this.$emit('close')
       },
-      goComment(){
+      goComment() {
         this.$router.push({
-          path:'/writecomment'
+          path: '/writecomment'
         })
       }
     },
@@ -52,7 +52,6 @@
 
 <style lang='less' scoped>
   .back-drop {
-    padding-top: 1rem;
     width: 100vw;
     background: rgba(0, 0, 0, 0.8);
     position: fixed;
@@ -86,6 +85,7 @@
       padding-bottom: 3rem;
       .comment-card {
         &.comment-entry {
+          margin-top: 1rem!important;
           display: flex;
           justify-content: space-between;
           .iconfont {

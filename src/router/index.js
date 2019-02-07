@@ -21,19 +21,19 @@ export default new Router({
   }, {
     path: '/index',
     name: 'index',
-    component: indexComponent,
-    redirect: '/index/one',
-    children: [{
-      path: 'one',
-      name: 'one',
-      component: oneComponent
-    }, {
-      path: 'two',
-      name: 'two',
-      component: twoComponent
-    }]
+    component: indexComponent
+      // redirect: '/index/one',
+      // children: [{
+      //   path: 'one',
+      //   name: 'one',
+      //   component: oneComponent
+      // }, {
+      //   path: 'two',
+      //   name: 'two',
+      //   component: twoComponent
+      // }]
   }, {
-    path: '/detail',
+    path: '/detail/:book_id',
     name: 'detail',
     meta: {
       keepAlive: true
@@ -42,28 +42,31 @@ export default new Router({
   }, {
     path: '/writecomment',
     name: 'writecomment',
+    meta: {
+      requireAuth: true
+    },
     component: writeCommentComponent
   }, {
     path: '/shelf',
     name: 'shelf',
-    component: shelfCompoment,
     meta: {
       requireAuth: true
-    }
+    },
+    component: shelfCompoment
   }, {
     path: '/user',
     name: 'user',
-    component: userComponent,
     meta: {
       requireAuth: true
-    }
+    },
+    component: userComponent
   }, {
     path: '/setting',
     name: 'setting',
-    component: settingComponent,
     meta: {
       requireAuth: true
-    }
+    },
+    component: settingComponent
   }, {
     path: '/login',
     name: 'login',

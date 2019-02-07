@@ -74,11 +74,9 @@
         showMore: false
       }
     },
-    created() {
-      console.log('11111')
+   created() {
       Service.getBookDetail(this.$route.params.book_id).then(res => {
         this.book_detail = res.data.book
-        console.log('======',this.book_detail.rate)
         if (this.book_detail.desc.length > 45) {
           this.book_detail.complete_desc = this.book_detail.desc
           this.book_detail.desc = this.book_detail.desc.slice(0, 45)
@@ -87,7 +85,7 @@
         } else {
           this.showMore = false
         }
-      });
+      })
     },
     methods: {
       showMoreDetail() {

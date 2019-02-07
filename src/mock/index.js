@@ -110,7 +110,6 @@ Mock.mock('/shelf', 'get', () => {
 
 // 获取图书的评论
 Mock.mock('/comments', 'get', () => {
-  console.log(comments)
   return {
     retCode: 0,
     comments: comments.comments

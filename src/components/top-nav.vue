@@ -49,22 +49,21 @@
   .fill-nav {
     display: block;
     width: 100vw;
-    height: 0.8rem;
+    height:.9rem;
   }
-  
   .top-nav {
     position: fixed;
     top: 0;
     left: 0;
     z-index: 9999;
     width: 100vw;
-    margin-bottom: 0.8rem;
+    margin-bottom:.9rem;
     background: #fff;
-    line-height: 0.8rem;
+    line-height:.9rem;
     text-align: center;
     font-weight: bolder;
     font-size: 0.32rem;
-    height: 0.8rem;
+    height:.9rem;
     .back-btn {
       padding: 0.1rem;
       font-size: 0.32rem;

@@ -34,7 +34,7 @@
         if(this.comment_content.length==0 || !this.$refs.rate_start.rate_num){
           tipModule.showToast('请输入你的评论并打分')
         }else{
-          tipModule.showAlert('评论已发布～',()=>{
+          tipModule.showAlert('评论已提交～',()=>{
             this.$router.go(-1)
           })
         }

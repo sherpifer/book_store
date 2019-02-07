@@ -39,7 +39,7 @@
       goDetail(book_id) {
         this.$router.push({
           name: 'detail',
-          params: {book_id}
+          params:{book_id:book_id}
         })
       }
     }
