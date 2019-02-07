@@ -1,7 +1,15 @@
 <template>
   <div :class="{'black-theme':theme=='black-theme'}">
-    <top-nav :showBack="true" :black_theme="theme=='black-theme'"></top-nav>
-    <div :class="['content',theme]" :style="font_size_sytle">{{content}}</div>
+    <top-nav :showBack="true" :black_theme="theme=='black-theme'"> </top-nav>
+    <div :class="['content-box',theme]" :style="font_size_sytle">
+      <p class="chapter-title">第{{chapters[chapter_index]}}章 ● {{chapter_title}}</p>
+      <div class="content" @click="closeWindow">{{content}}</div>
+      <div class="chapter-btns">
+        <p class="btn" :class="{'hidden':chapter_index==0}" @click="prev()"><span class="iconfont icon-jiantouzuo"></span>上一章</p>
+        <p class="btn" :class="{'hidden':chapter_index==chapters.length-1}" @click="next()">下一章<span class="iconfont icon-jiantouyou"></span></p>
+      </div>
+    </div>
+    <!-- 设置背景字体 -->
     <div class="setting-content bg-setting" v-if="edit_bg">
       <div class="bg-select white" @click="changeTheme('white-theme')"></div>
       <div class="bg-select pink" @click="changeTheme('pingk-theme')"></div>
@@ -12,8 +20,11 @@
       <span class="iconfont icon-yueduye_zitijianxiao" @click="reduceFontSize"></span>
       <span class="iconfont icon-yueduye_zitizengda" @click="increaseFontSize"></span>
     </div>
-  
     <div class="setting-bar">
+      <p class="btn" @click="showChapterList" :class="{'active':show_chapter_list}">
+        <span class="iconfont icon-yuedu"></span>
+        <span>章节</span>
+      </p>
       <p class="btn" @click="toggleBgEdit" :class="{'active':edit_bg}">
         <span class="iconfont icon-zhuti"></span>
         <span>背景</span>
@@ -22,10 +33,21 @@
         <span class="iconfont icon-zitishezhi"></span>
         <span>字体</span></p>
     </div>
+    <!-- 章节选择 -->
+    <div class="chapter-list" v-if="show_chapter_list">
+      <div class="title" title="章节选择"></div>
+      <div :class="['item',{'active': chapter_index==index}]" v-for="(item,index) in chapters" :key="index" @click="goChapter(index)">第{{item}}章</div>
+    </div>
   </div>
 </template>
 
 <script>
+  import Vue from 'vue'
+  import {
+    CellSwipe
+  } from 'mint-ui';
+  
+  Vue.component(CellSwipe.name, CellSwipe);
   import topNav from '@/components/top-nav'
   import Service from '@/service/service'
   import tipModule from '@/commonModules/tip-module'
@@ -35,11 +57,15 @@
     },
     data() {
       return {
+        chapter_index: 0,
         theme: 'white-theme',
         content: '',
+        chapter_title: '',
+        show_chapter_list: false,
         edit_bg: false,
         edit_font_size: false,
-        font_size: 0.36 //17 18 19 20
+        font_size: 0.36, //17 18 19 20
+        chapters: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二', '十三', '十四', '十五', '十六', '十七']
       }
     },
     computed: {
@@ -50,6 +76,11 @@
       }
     },
     methods: {
+      closeWindow() {
+        this.edit_font_size = false
+        this.edit_bg = false
+        this.show_chapter_list = false
+      },
       changeTheme(theme) {
         this.theme = theme
         console.log(this.theme)
@@ -71,35 +102,94 @@
       },
       toggleBgEdit() {
         this.edit_font_size = false
+        this.show_chapter_list = false
         this.edit_bg = !this.edit_bg
       },
       toggleFontEdit() {
         this.edit_bg = false
+        this.show_chapter_list = false
         this.edit_font_size = !this.edit_font_size
+      },
+      showChapterList() {
+        this.edit_bg = false
+        this.edit_font_size = false
+        this.show_chapter_list = !this.show_chapter_list
+      },
+      goChapter(index) {
+        this.show_chapter_list = false
+        if (this.chapter_index == index) return
+        this.chapter_index = index
+        this.getChapterDetail(index)
+      },
+      getChapterDetail(index) {
+        if (!index) index = 0
+        Service.getChapter(index).then(res => {
+          if (res.data.retCode == 0) {
+            this.content = res.data.content
+            this.chapter_title = res.data.chapter_title
+          }
+        })
+      },
+      prev() {
+        this.getChapterDetail(--this.chapter_index)
+        window.scrollTo(0, 0)
+      },
+      next() {
+        this.getChapterDetail(++this.chapter_index)
+        window.scrollTo(0, 0)
       }
     },
     created() {
-      console.log("this.theme=='black-theme'", this.theme == 'black-theme')
-      Service.getChapter().then(res => {
-        if (res.data.retCode == 0) {
-          this.content = res.data.content
-        }
-      })
+      this.getChapterDetail()
     },
     activated() {},
     deactivated() {
       this.edit_bg = false
       this.edit_font_size = false
+      this.show_chapter_list = false
     }
   }
 </script>
 
 <style lang="less" scoped>
-  .content {
+  .chapter-list {
+    overflow: scroll;
+    position: fixed;
+    left: 0;
+    top: 0.8rem;
+    bottom: 1rem;
+    width: 3rem;
+    background: #f1f1f1;
+    height: auto;
+    text-align: center;
+    border-right: 1px solid #c5c5c5;
+    .title {
+      font-weight: 500;
+    }
+    .item {
+      line-height: 1.2rem;
+      background: #f8f8f8;
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+      &.active {
+        color: #913d12;
+      }
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+  
+  .content-box {
     padding: .25rem;
     line-height: 150%;
     padding-bottom: 2rem;
     color: black;
+    .chapter-title {
+      font-size: .4rem;
+      font-weight: 600;
+      line-height: 200%;
+    }
     &.white-theme {
       background: #fff;
     }
@@ -113,9 +203,25 @@
       background: #333;
       color: #fff;
     }
+    .chapter-btns {
+      width: 100vw;
+      height: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .btn {
+        width: 3rem;
+        text-align: center;
+        margin-right: .8rem;
+        &.hidden {
+          visibility: hidden;
+        }
+      }
+    }
   }
   
   .setting-content {
+    z-index: 99999;
     background: #fff;
     width: 100vw;
     height: 1.5rem;
@@ -190,6 +296,17 @@
       color: #fff;
       p.btn {
         color: #fff;
+        &.active {
+          color: #ffe182;
+        }
+      }
+    }
+    .chapter-list {
+      background: #a5a5a5;
+      border-right: 1px solid #c5c5c5;
+      .item {
+        background: #a5a5a5;
+        border-bottom: 1px solid #ccc;
         &.active {
           color: #ffe182;
         }

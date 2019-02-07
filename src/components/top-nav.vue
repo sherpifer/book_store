@@ -42,13 +42,6 @@
           this.$router.back(-1)
         }
       }
-    },
-    created() {
-  
-    },
-    mounted() {
-      console.log(this.black_theme)
-      console.log(this.showBack)
     }
   }
 </script>

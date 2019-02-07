@@ -120,6 +120,7 @@ Mock.mock('/comments', 'get', () => {
 Mock.mock('/chapter', 'get', () => {
   return {
     retCode: 0,
-    content: Random.cparagraph(55, 80)
+    content: Random.cparagraph(55, 80),
+    chapter_title: Random.ctitle(5, 10)
   }
 })

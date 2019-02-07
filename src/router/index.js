@@ -41,8 +41,8 @@ export default new Router({
     },
     component: detailComponent
   }, {
-    path: '/reading',
-    name: 'reading',
+    path: '/chapter',
+    name: 'chapter',
     meta: {
       keepAlive: true
     },

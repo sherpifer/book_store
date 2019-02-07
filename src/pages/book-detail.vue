@@ -36,7 +36,7 @@
         </p>
       </div>
     </div>
-    <router-link class="read-btn" :to="{path:'/reading'}">
+    <router-link class="read-btn" :to="{name:'chapter'}">
       <span class="iconfont icon-yuedu"></span>
       <span>开始阅读</span>
     </router-link>
