@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="top-nav">
+    <div class="top-nav" :class="{'black_theme':black_theme}">
       <span class="back-btn iconfont icon-fanhui" @click="back" v-if="showBack"></span> {{title}}
       <div class="right-box">
         <!-- 在top nav 放自定义内容 -->
@@ -15,6 +15,10 @@
   export default {
     props: {
       title: [String, Number],
+      black_theme: {
+        type: Boolean,
+        default: false
+      },
       showBack: {
         type: Boolean,
         default: false
@@ -39,7 +43,11 @@
         }
       }
     },
-    mouted() {
+    created() {
+  
+    },
+    mounted() {
+      console.log(this.black_theme)
       console.log(this.showBack)
     }
   }
@@ -49,21 +57,26 @@
   .fill-nav {
     display: block;
     width: 100vw;
-    height:.9rem;
+    height: .9rem;
   }
+  
   .top-nav {
     position: fixed;
     top: 0;
     left: 0;
     z-index: 9999;
     width: 100vw;
-    margin-bottom:.9rem;
+    margin-bottom: .9rem;
     background: #fff;
-    line-height:.9rem;
+    line-height: .9rem;
     text-align: center;
     font-weight: bolder;
     font-size: 0.32rem;
-    height:.9rem;
+    height: .9rem;
+    &.black_theme {
+      background: #5d5d5d;
+      color: #fff!important;
+    }
     .back-btn {
       padding: 0.1rem;
       font-size: 0.32rem;

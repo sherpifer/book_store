@@ -36,6 +36,10 @@
         </p>
       </div>
     </div>
+    <router-link class="read-btn" :to="{path:'/reading'}">
+      <span class="iconfont icon-yuedu"></span>
+      <span>开始阅读</span>
+    </router-link>
     <comment-list v-if="showComments" @close="closeCommentList">
     </comment-list>
     <login-form v-if="showLoginForm" @loginSuccess="loginCallback" @close="closeLoginForm"></login-form>
@@ -61,20 +65,11 @@
       return {
         showLoginForm: false,
         showComments: false,
-        book_detail: {
-          title: '',
-          author: '',
-          id: '',
-          cover_img: '',
-          rate: 0,
-          population: 0,
-          recomment_num: 0,
-          is_fav: false
-        },
+        book_detail: {},
         showMore: false
       }
     },
-   created() {
+    activated() {
       Service.getBookDetail(this.$route.params.book_id).then(res => {
         this.book_detail = res.data.book
         if (this.book_detail.desc.length > 45) {
@@ -86,6 +81,9 @@
           this.showMore = false
         }
       })
+    },
+    deactivated() {
+      this.book_detail = {}
     },
     methods: {
       showMoreDetail() {
@@ -147,6 +145,27 @@
         font-size: .35rem;
         &.red-bg {
           color: #ea7287;
+        }
+      }
+    }
+    .read-btn {
+      padding-left: .6rem;
+      padding-right: .3rem;
+      background: #197fbe;
+      border-top-left-radius: 0.5rem;
+      border-bottom-left-radius: 0.5rem;
+      line-height: 0.9rem;
+      font-size: 0.34rem;
+      color: #fff;
+      position: fixed;
+      bottom: .5rem;
+      right: 0;
+      box-shadow: 0 0 0.35rem 0.05rem #ccc;
+      span {
+        vertical-align: middle;
+        &.iconfont {
+          font-size: .4rem;
+          font-weight: 700;
         }
       }
     }

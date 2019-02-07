@@ -7,6 +7,7 @@ import twoComponent from '@/pages/two'
 import loginComponent from '@/pages/login'
 import shelfCompoment from '@/pages/shelf'
 import detailComponent from '@/pages/book-detail'
+import readingComponent from '@/pages/reading'
 import registerComponent from '@/pages/register'
 import settingComponent from '@/pages/setting'
 import writeCommentComponent from '@/pages/write-comment'
@@ -39,6 +40,13 @@ export default new Router({
       keepAlive: true
     },
     component: detailComponent
+  }, {
+    path: '/reading',
+    name: 'reading',
+    meta: {
+      keepAlive: true
+    },
+    component: readingComponent
   }, {
     path: '/writecomment',
     name: 'writecomment',

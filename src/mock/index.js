@@ -115,3 +115,11 @@ Mock.mock('/comments', 'get', () => {
     comments: comments.comments
   }
 })
+
+// 获得文章详情
+Mock.mock('/chapter', 'get', () => {
+  return {
+    retCode: 0,
+    content: Random.cparagraph(55, 80)
+  }
+})

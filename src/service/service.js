@@ -27,6 +27,9 @@ const Service = {
   },
   getComments() {
     return axios.get('/comments')
+  },
+  getChapter() {
+    return axios.get('/chapter')
   }
 }
 
