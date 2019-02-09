@@ -1,16 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import indexComponent from '@/pages/index'
-import userComponent from '@/pages/user'
+import userComponent from '@/pages/user/user'
 import oneComponent from '@/pages/one'
 import twoComponent from '@/pages/two'
-import loginComponent from '@/pages/login'
+import registerComponent from '@/pages/user/register'
+import loginComponent from '@/pages/user/login'
 import shelfCompoment from '@/pages/shelf'
-import detailComponent from '@/pages/book-detail'
-import readingComponent from '@/pages/reading'
-import registerComponent from '@/pages/register'
+import detailComponent from '@/pages/book/book-detail'
+import readingComponent from '@/pages/book/reading'
 import settingComponent from '@/pages/setting'
-import writeCommentComponent from '@/pages/write-comment'
+import writeCommentComponent from '@/pages/book/write-comment'
 import commonFunModule from '@/common/common-fun-module'
 import store from '@/store/store'
 Vue.use(Router)
@@ -79,6 +79,9 @@ const router = new Router({
   }, {
     path: '/login',
     name: 'login',
+    meta: {
+      keepAlive: true
+    },
     component: loginComponent
   }, {
     path: '/register',

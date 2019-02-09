@@ -59,11 +59,19 @@
         })
       }
     },
-    created() {
-      //设置top-nav的返回为返回首页
-      if (this.$route.params && this.$route.params.go_back_home) {
+    beforeRouteLeave(to, from, next) {
+      if (to.name == 'setting') {
         this.go_back_home = true
+        this.$router.push({
+          path:'/index'
+        })
+      } else {
+        next()
       }
+    },
+    activated() {},
+    deactivated() {
+  
     }
   }
 </script>

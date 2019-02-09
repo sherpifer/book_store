@@ -22,10 +22,6 @@
       showBack: {
         type: Boolean,
         default: false
-      },
-      goBackHome: {
-        type: Boolean,
-        default: false
       }
     },
     data() {
@@ -33,14 +29,7 @@
     },
     methods: {
       back() {
-        if (this.goBackHome) {
-          console.log('用户拒绝登录，回到首页')
-          this.$router.push({
-            path: '/index'
-          })
-        } else {
-          this.$router.back(-1)
-        }
+        this.$router.back(-1)
       }
     }
   }

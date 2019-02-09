@@ -48,6 +48,12 @@
       logout() {
         tipModule.showConfirm('确定要退出该账号吗', () => {
           store.commit('logout')
+          // this.$router.push({
+          //   path: 'login',
+          //   query: {
+          //     go_back_home: true
+          //   }
+          // })
           this.$router.push({
             name: 'login',
             params: {
