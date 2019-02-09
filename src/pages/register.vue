@@ -27,7 +27,7 @@
 
 <script scoped>
   import Service from '@/service/service'
-  import tipModule from '@/commonModules/tip-module'
+  import tipModule from '@/common/tip-module'
   import topNav from "@/components/top-nav"
   export default {
     components: {
@@ -43,9 +43,6 @@
         pwd_err: false,
         repeat_pwd_err: false
       }
-    },
-    mounted() {
-  
     },
     methods: {
       goBack() {
@@ -92,7 +89,8 @@
         this.checkPwd()
         this.checkRepeatPwd()
         if (this.pwd && this.repeat_pwd && this.user_name && this.user_name_only && !this.user_name_err && !this.pwd_err && !this.repeat_pwd_err) {
-          Service.register({
+         this.common.showLoading()
+         Service.register({
             user_name: this.user_name,
             password: this.pwd
           }).then(res => {
@@ -102,6 +100,7 @@
                 this.$router.back(-1)
               }, 2000)
             }
+            this.common.hideLoading()
           })
         } else {
           console.log('请根据要求注册')

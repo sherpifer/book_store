@@ -3,44 +3,23 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-// import axios from 'axios'
-// import VueAxios from 'vue-axios'
-// Vue.use(VueAxios, axios)
-import mock from '@/mock/index'
-import store from '@/store/store'
-
+import mock from '../mock/index'
 import './assets/style/reset.css'
 import './assets/iconfont/iconfont.css'
 //swiper组件
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 Vue.use(VueAwesomeSwiper, /* { options } */ )
-
-// mint-ui库
 import Mint from 'mint-ui'
 import 'mint-ui/lib/style.css'
 Vue.use(Mint)
+import commonFunModule from '@/common/common-fun-module'
+Vue.prototype.common = commonFunModule
 
-Vue.config.productionTip = false
-
+// Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
   components: { App },
   template: '<App/>'
-})
-
-router.beforeEach((to, from, next) => {
-  if (to.meta.requireAuth) {
-    if (store.state.is_login) {
-      next()
-    } else {
-      next({
-        path: '/login',
-        query: { redirect: to.fullPath }
-      })
-    }
-  } else {
-    next()
-  }
 })

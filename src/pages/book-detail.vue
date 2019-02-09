@@ -10,7 +10,7 @@
       <p class="book-title">{{book_detail.title}}</p>
       <p class="book-author">{{book_detail.author}}</p>
     </div>
-    <div class="book-detail">
+    <div class="book-detail" v-if="!is_loading">
       <div class="book-info">
         <div class="rate-box" @click="showCommentList">
           <div>
@@ -36,7 +36,7 @@
         </p>
       </div>
     </div>
-    <router-link class="read-btn" :to="{name:'chapter'}">
+    <router-link class="read-btn" :to="{name:'chapter',params:{'book_id':book_id}}"  v-if="!is_loading">
       <span class="iconfont icon-yuedu"></span>
       <span>开始阅读</span>
     </router-link>
@@ -48,7 +48,7 @@
 
 <script>
   import Service from '@/service/service'
-  import tipModule from '@/commonModules/tip-module'
+  import tipModule from '@/common/tip-module'
   import store from '@/store/store'
   import topNav from '@/components/top-nav'
   import rateStart from '@/components/rate-start'
@@ -66,10 +66,20 @@
         showLoginForm: false,
         showComments: false,
         book_detail: {},
-        showMore: false
+        showMore: false,
+        book_id: null,
+        is_loading: true
       }
     },
     activated() {
+      if (this.book_id == this.$route.params.book_id) {
+        this.book_id = this.$route.params.book_id
+        return
+      }
+      this.common.showLoading()
+      this.is_loading = true
+      this.book_id = this.$route.params.book_id
+      this.book_detail = {}
       Service.getBookDetail(this.$route.params.book_id).then(res => {
         this.book_detail = res.data.book
         if (this.book_detail.desc.length > 45) {
@@ -80,10 +90,12 @@
         } else {
           this.showMore = false
         }
+        this.is_loading = false
+        this.common.hideLoading()
       })
     },
     deactivated() {
-      this.book_detail = {}
+      // this.book_detail = {}
     },
     methods: {
       showMoreDetail() {
@@ -131,7 +143,7 @@
         this.showComments = false
       }
     }
-  };
+  }
 </script>
 
 <style lang='less' scoped>

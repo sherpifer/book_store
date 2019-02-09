@@ -15,7 +15,7 @@
 <script>
   import topNav from '@/components/top-nav'
   import rateStart from '@/components/rate-start'
-  import tipModule from '@/commonModules/tip-module'
+  import tipModule from '@/common/tip-module'
   export default {
     components: {
       topNav,

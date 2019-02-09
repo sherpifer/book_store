@@ -28,7 +28,7 @@
 
 <script>
   import Vue from 'vue'
-  import tipModule from '@/commonModules/tip-module'
+  import tipModule from '@/common/tip-module'
   import topNav from '@/components/top-nav'
   import store from '@/store/store'
   import {

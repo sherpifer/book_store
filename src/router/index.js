@@ -11,11 +11,11 @@ import readingComponent from '@/pages/reading'
 import registerComponent from '@/pages/register'
 import settingComponent from '@/pages/setting'
 import writeCommentComponent from '@/pages/write-comment'
-
+import commonFunModule from '@/common/common-fun-module'
 import store from '@/store/store'
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [{
     path: '*',
     redirect: '/index'
@@ -41,7 +41,7 @@ export default new Router({
     },
     component: detailComponent
   }, {
-    path: '/chapter',
+    path: '/chapter/:book_id',
     name: 'chapter',
     meta: {
       keepAlive: true
@@ -58,7 +58,8 @@ export default new Router({
     path: '/shelf',
     name: 'shelf',
     meta: {
-      requireAuth: true
+      requireAuth: true,
+      keepAlive: true
     },
     component: shelfCompoment
   }, {
@@ -85,3 +86,23 @@ export default new Router({
     component: registerComponent
   }]
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requireAuth) {
+    if (store.state.is_login) {
+      next()
+    } else {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
+    }
+  } else {
+    next()
+  }
+})
+router.afterEach((to, from) => {
+  commonFunModule.hideLoading()
+})
+
+export default router

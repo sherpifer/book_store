@@ -2,11 +2,11 @@
   <div :class="{'black-theme':theme=='black-theme'}">
     <top-nav :showBack="true" :black_theme="theme=='black-theme'"> </top-nav>
     <div :class="['content-box',theme]" :style="font_size_sytle">
-      <p class="chapter-title">第{{chapters[chapter_index]}}章 ● {{chapter_title}}</p>
+      <p class="chapter-title" v-if="chapter_title">第{{chapters[chapter_index]}}章 ● {{chapter_title}}</p>
       <div class="content" @click="closeWindow">{{content}}</div>
       <div class="chapter-btns">
-        <p class="btn" :class="{'hidden':chapter_index==0}" @click="prev()"><span class="iconfont icon-jiantouzuo"></span>上一章</p>
-        <p class="btn" :class="{'hidden':chapter_index==chapters.length-1}" @click="next()">下一章<span class="iconfont icon-jiantouyou"></span></p>
+        <p class="btn" v-if="content" :class="{'hidden':chapter_index==0}" @click="prev()"><span class="iconfont icon-jiantouzuo"></span>上一章</p>
+        <p class="btn" v-if="content" :class="{'hidden':chapter_index==chapters.length-1}" @click="next()">下一章<span class="iconfont icon-jiantouyou"></span></p>
       </div>
     </div>
     <!-- 设置背景字体 -->
@@ -50,13 +50,14 @@
   Vue.component(CellSwipe.name, CellSwipe);
   import topNav from '@/components/top-nav'
   import Service from '@/service/service'
-  import tipModule from '@/commonModules/tip-module'
+  import tipModule from '@/common/tip-module'
   export default {
     components: {
       topNav
     },
     data() {
       return {
+        book_id: null,
         chapter_index: 0,
         theme: 'white-theme',
         content: '',
@@ -123,11 +124,13 @@
       },
       getChapterDetail(index) {
         if (!index) index = 0
+        this.common.showLoading()
         Service.getChapter(index).then(res => {
           if (res.data.retCode == 0) {
             this.content = res.data.content
             this.chapter_title = res.data.chapter_title
           }
+          this.common.hideLoading()
         })
       },
       prev() {
@@ -139,10 +142,18 @@
         window.scrollTo(0, 0)
       }
     },
-    created() {
+    activated() {
+      if (this.book_id == this.$route.params.book_id) {
+        this.book_id = this.$route.params.book_id
+        return
+      }
+      this.book_id = this.$route.params.book_id
+      this.chapter_index = 0
+      this.content = ''
+      this.chapter_title = ''
       this.getChapterDetail()
+  
     },
-    activated() {},
     deactivated() {
       this.edit_bg = false
       this.edit_font_size = false
@@ -181,6 +192,7 @@
   }
   
   .content-box {
+    min-height: 100vh;
     padding: .25rem;
     line-height: 150%;
     padding-bottom: 2rem;
@@ -221,7 +233,7 @@
   }
   
   .setting-content {
-    z-index: 99999;
+    // z-index: 100;
     background: #fff;
     width: 100vw;
     height: 1.5rem;
@@ -261,7 +273,7 @@
   }
   
   .setting-bar {
-    z-index: 99999;
+    // z-index: 10;
     background: #fff;
     color: #c4c3c3;
     position: fixed;

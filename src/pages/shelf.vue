@@ -21,7 +21,7 @@
 
 <script>
   import Vue from 'vue'
-  import tipModule from '@/commonModules/tip-module'
+  import tipModule from '@/common/tip-module'
   import Service from '@/service/service'
   import topNav from '@/components/top-nav'
   import bottomNav from '@/components/bottom-nav'
@@ -84,8 +84,11 @@
         })
       }
     },
-    created() {
+    activated() {
       this.getBooks()
+    },
+    deactivated() {
+      this.edit = false
     }
   }
 </script>

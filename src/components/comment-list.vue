@@ -1,6 +1,6 @@
 <template>
   <div class="back-drop">
-    <div class="comment-list-box">
+    <div class="comment-list-box" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="100">
       <div class="comment-card comment-entry" @click="goComment">
         <p> <span class="iconfont icon-pingjia1"></span> 去点评</p>
         <span class="iconfont icon-jiantouyou"></span>
@@ -23,6 +23,12 @@
 </template>
 
 <script>
+  import Vue from 'vue'
+  import {
+    InfiniteScroll
+  } from 'mint-ui'
+  
+  Vue.use(InfiniteScroll)
   import Service from '@/service/service'
   export default {
     data() {
@@ -31,6 +37,9 @@
       }
     },
     methods: {
+      loadMore() {
+        this.getComments()
+      },
       close() {
         this.$emit('close')
       },
@@ -38,14 +47,19 @@
         this.$router.push({
           path: '/writecomment'
         })
+      },
+      getComments() {
+        this.common.showLoading()
+        Service.getComments().then(res => {
+          if (res.data.retCode == 0) {
+            this.comments = this.comments.concat(res.data.comments)
+          }
+          this.common.hideLoading()
+        })
       }
     },
     created() {
-      Service.getComments().then(res => {
-        if (res.data.retCode == 0) {
-          this.comments = res.data.comments
-        }
-      })
+      this.getComments()
     }
   }
 </script>
@@ -59,7 +73,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 10000;
+    z-index: 3001;
     .close-btn {
       position: fixed;
       bottom: .45rem;
@@ -82,7 +96,6 @@
       height: 100vh;
       width: 100vw;
       overflow: scroll;
-      padding-bottom: 3rem;
       .comment-card {
         &.comment-entry {
           margin-top: 1rem!important;

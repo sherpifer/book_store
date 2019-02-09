@@ -1,5 +1,5 @@
 import { Toast } from 'mint-ui'
-import { MessageBox } from 'mint-ui'
+import { MessageBox, Indicator } from 'mint-ui'
 
 const tipModule = {
   showToast(msg, duration) {
@@ -26,6 +26,12 @@ const tipModule = {
     }, cancel => {
       reject && reject()
     })
+  },
+  showLoading() {
+    this.$Indicator.open()
+  },
+  hideLoading() {
+    this.$Indicator.close()
   }
 }
 

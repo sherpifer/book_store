@@ -9,9 +9,9 @@ import {
 } from './data'
 
 /*** 设置随机的接口响应时间，10-2500毫秒 ***/
-// Mock.setup({
-//     timeout: '10-2500'
-// })
+Mock.setup({
+  timeout: '10-400'
+})
 
 
 // 检查账号的唯一性

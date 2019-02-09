@@ -19,7 +19,7 @@
 </template>
 
 <script scoped>
-  import tipModule from '@/commonModules/tip-module'
+  import tipModule from '@/common/tip-module'
   import Service from '@/service/service'
   import store from '@/store/store'
   import topNav from '@/components/top-nav'

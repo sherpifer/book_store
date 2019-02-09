@@ -51,7 +51,7 @@ var books_list = [{
 
 // 评论
 var comments = Mock.mock({
-  "comments|10-20": [{
+  "comments|8": [{
     "account|1": [
       Mock.mock("@word(3,6)"),
       Mock.mock("@word(4,10)"),

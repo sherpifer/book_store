@@ -1,12 +1,24 @@
 @charset "utf-8";
 html {
-    background-color: #f1f1f1;
-    color: #000;
-    font-size: 50px;
+  background-color: #f1f1f1;
+  color: #000;
+  font-size: 50px;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.mint-indicator-mask {
+  z-index: 2000;
+}
+
+.mint-indicator-wrapper {
+  z-index: 9999;
+}
+
+.mint-toast.is-placemiddle {
+  z-index: 9999;
 }
 
 body,
@@ -33,8 +45,8 @@ th,
 td,
 pre,
 xmp {
-    margin: 0;
-    padding: 0
+  margin: 0;
+  padding: 0
 }
 
 body,
@@ -48,8 +60,8 @@ tt,
 code,
 kbd,
 samp {
-    line-height: 1.5;
-    font-family: tahoma, arial, "Hiragino Sans GB", simsun, sans-serif
+  line-height: 1.5;
+  font-family: tahoma, arial, "Hiragino Sans GB", simsun, sans-serif
 }
 
 h1,
@@ -64,7 +76,7 @@ input,
 textarea,
 button,
 select {
-    font-size: 100%
+  font-size: 100%
 }
 
 h1,
@@ -73,7 +85,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: tahoma, arial, "Hiragino Sans GB", "微软雅黑", simsun, sans-serif
+  font-family: tahoma, arial, "Hiragino Sans GB", "微软雅黑", simsun, sans-serif
 }
 
 h1,
@@ -84,7 +96,7 @@ h5,
 h6,
 b,
 strong {
-    font-weight: normal
+  font-weight: normal
 }
 
 address,
@@ -94,29 +106,29 @@ em,
 i,
 optgroup,
 var {
-    font-style: normal
+  font-style: normal
 }
 
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    text-align: left
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-align: left
 }
 
 caption,
 th {
-    text-align: inherit
+  text-align: inherit
 }
 
 ul,
 ol,
 menu {
-    list-style: none
+  list-style: none
 }
 
 fieldset,
 img {
-    border: 0
+  border: 0
 }
 
 img,
@@ -125,7 +137,7 @@ input,
 textarea,
 button,
 select {
-    vertical-align: middle
+  vertical-align: middle
 }
 
 article,
@@ -139,27 +151,27 @@ figcaption,
 hgroup,
 details,
 menu {
-    display: block
+  display: block
 }
 
 audio,
 canvas,
 video {
-    display: inline-block;
-    *display: inline;
-    *zoom: 1
+  display: inline-block;
+  *display: inline;
+  *zoom: 1
 }
 
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-    content: "\0020"
+  content: "\0020"
 }
 
 textarea {
-    overflow: auto;
-    resize: vertical
+  overflow: auto;
+  resize: vertical
 }
 
 input,
@@ -167,18 +179,18 @@ textarea,
 button,
 select,
 a {
-    outline: 0 none;
-    border: none;
+  outline: 0 none;
+  border: none;
 }
 
 button::-moz-focus-inner,
 input::-moz-focus-inner {
-    padding: 0;
-    border: 0
+  padding: 0;
+  border: 0
 }
 
 mark {
-    background-color: transparent
+  background-color: transparent
 }
 
 a,
@@ -186,37 +198,37 @@ ins,
 s,
 u,
 del {
-    text-decoration: none
+  text-decoration: none
 }
 
 sup,
 sub {
-    vertical-align: baseline
+  vertical-align: baseline
 }
 
 html {
-    overflow-x: hidden;
-    height: 100%;
-    font-size: 50px;
-    -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+  height: 100%;
+  font-size: 50px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
-    font-family: Arial, "Microsoft Yahei", "Helvetica Neue", Helvetica, sans-serif;
-    color: #333;
-    font-size: .28em;
-    line-height: 1;
-    -webkit-text-size-adjust: none;
+  font-family: Arial, "Microsoft Yahei", "Helvetica Neue", Helvetica, sans-serif;
+  color: #333;
+  font-size: .28em;
+  line-height: 1;
+  -webkit-text-size-adjust: none;
 }
 
 hr {
-    height: .02rem;
-    margin: .1rem 0;
-    border: medium none;
-    border-top: .02rem solid #cacaca;
+  height: .02rem;
+  margin: .1rem 0;
+  border: medium none;
+  border-top: .02rem solid #cacaca;
 }
 
 a {
-    color: #25a4bb;
-    text-decoration: none;
+  color: #25a4bb;
+  text-decoration: none;
 }

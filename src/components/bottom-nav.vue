@@ -21,7 +21,7 @@
 
 <style lang="less">
   .footer {
-    z-index: 99999;
+    z-index: 3000;
     background: #fff;
     color: #c4c3c3;
     position: fixed;
