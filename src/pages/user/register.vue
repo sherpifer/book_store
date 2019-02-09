@@ -49,6 +49,7 @@
         this.$router.back(-1)
       },
       checkUserName() {
+        if (!this.user_name) return
         if (this.user_name && /^([a-z]|[A-Z]){3,}$/.test(this.user_name)) {
           this.user_name_err = false
           // 检测用户名的唯一性
@@ -65,7 +66,8 @@
         }
       },
       checkPwd() {
-        if (this.pwd && /^\w{6,}$/.test(this.pwd)) {
+        if (!this.pwd) return
+        if (/^\w{6,}$/.test(this.pwd)) {
           this.pwd_err = false
         } else {
           this.pwd_err = true
@@ -84,23 +86,23 @@
           this.repeat_pwd_err = true
         }
       },
-      register() {
+      register: function() {
         this.checkUserName()
         this.checkPwd()
         this.checkRepeatPwd()
         if (this.pwd && this.repeat_pwd && this.user_name && this.user_name_only && !this.user_name_err && !this.pwd_err && !this.repeat_pwd_err) {
-         this.common.showLoading()
-         Service.register({
+          this.common.showLoading()
+          Service.register({
             user_name: this.user_name,
             password: this.pwd
-          }).then(res => {
+          }).then((res) => {
             if (res.data.retCode == 0) {
-              tipModule.showToastWithIcon('注册成功，请登录', 'icon icon-success')
-              setTimeout(() => {
-                this.$router.back(-1)
-              }, 2000)
+              this.common.hideLoading()
+              let _this=this
+              tipModule.showAlert('注册成功，请登录', function() {
+                _this.$router.back(-1)
+              })
             }
-            this.common.hideLoading()
           })
         } else {
           console.log('请根据要求注册')
