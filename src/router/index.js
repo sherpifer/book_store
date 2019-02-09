@@ -41,7 +41,7 @@ const router = new Router({
     },
     component: detailComponent
   }, {
-    path: '/chapter/:book_id',
+    path: '/detail/chapter/:book_id',
     name: 'chapter',
     meta: {
       keepAlive: true

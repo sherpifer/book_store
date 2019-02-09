@@ -1,5 +1,5 @@
 <template>
-  <div class="user-page">
+  <div class="user-page" >
     <top-nav :title="user_name">
       <router-link class="iconfont icon-shezhi" to="/setting"></router-link>
     </top-nav>

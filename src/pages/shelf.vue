@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <top-nav title="书架">
       <span v-if="edit" @click="switchEdit" class="finish-btn">完成</span>
       <span v-else @click="switchEdit">编辑</span>
@@ -94,6 +94,11 @@
 </script>
 
 <style lang='less' scoped>
+  .page {
+    width: 100vw;
+    height: 100vh;
+  }
+  
   .finish-btn {
     color: #ed1254;
   }
