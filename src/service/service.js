@@ -39,6 +39,12 @@ const Service = {
   },
   readMsg(params) {
     return axios.put('/api/usermsg', params)
+  },
+  getFans() {
+    return axios.get('/api/fans')
+  },
+  getRank() {
+    return axios.get('/api/rank')
   }
 }
 

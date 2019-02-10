@@ -6,7 +6,9 @@ import {
   user_shelf_books,
   books_list,
   comments,
-  user_msg
+  user_msg,
+  fans,
+  rank
 } from './data'
 
 /*** 设置随机的接口响应时间，10-2500毫秒 ***/
@@ -169,6 +171,26 @@ Mock.mock('/api/usermsg', 'put', (options) => {
     retCode: 0,
     data: {
       user_msg: user_msg.msg
+    }
+  }
+})
+
+// 获取用户粉丝
+Mock.mock('/api/fans', 'get', () => {
+  return {
+    retCode: 0,
+    data: {
+      fans: fans.data
+    }
+  }
+})
+
+// 获取排名
+Mock.mock('/api/rank', 'get', () => {
+  return {
+    retCode: 0,
+    data: {
+      rank: rank.data
     }
   }
 })

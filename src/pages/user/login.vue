@@ -40,10 +40,12 @@
     methods: {
       login() {
         if (!this.user_name || !this.password) return
+        this.common.showLoading()
         Service.login({
           user_name: this.user_name,
           password: this.password
         }).then((res) => {
+          this.common.hideLoading()
           if (res.data.retCode == 0) {
             store.commit('loginSuccess', res.data.user)
             //跳转到需要登录前提的目标的页面

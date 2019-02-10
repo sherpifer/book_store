@@ -55,9 +55,9 @@
         tipModule.showConfirm('确定要退出该账号吗', () => {
           store.commit('logout')
           this.$router.push({
-            name: 'login',
-            params: {
-              go_back_home: true
+            path: '/login',
+            query: {
+              redirect: '/user'
             }
           })
         })

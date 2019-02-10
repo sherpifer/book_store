@@ -82,7 +82,7 @@ var comments = Mock.mock({
   }]
 })
 
-// 新信息
+// 用户信息
 var user_msg = Mock.mock({
   "msg|4-8": [{
     "id|+1": 0,
@@ -101,10 +101,57 @@ var user_msg = Mock.mock({
     "new_msg": true
   }]
 })
+
+// 粉丝
+var fans = Mock.mock({
+  "data|20": [{
+    "account|1": [
+      Mock.mock("@word(3,6)"),
+      Mock.mock("@word(4,10)"),
+      Mock.mock("@word(5,11)"),
+      Mock.mock("@word(6,15)")
+    ],
+    "avatar|1": [
+      "/static/imgs/user01.png",
+      "/static/imgs/user02.png",
+      "/static/imgs/user03.png",
+      "/static/imgs/user04.png",
+      "/static/imgs/user05.png",
+      "/static/imgs/user06.png",
+      "/static/imgs/user07.png"
+    ]
+  }]
+})
+
+//排名
+var rank =
+  Mock.mock({
+    "data|20": [{
+      "account|1": [
+        Mock.mock("@word(3,6)"),
+        Mock.mock("@word(4,10)"),
+        Mock.mock("@word(5,11)"),
+        Mock.mock("@word(6,15)")
+      ],
+      "avatar|1": [
+        "/static/imgs/user01.png",
+        "/static/imgs/user02.png",
+        "/static/imgs/user03.png",
+        "/static/imgs/user04.png",
+        "/static/imgs/user05.png",
+        "/static/imgs/user06.png",
+        "/static/imgs/user07.png"
+      ],
+      "rank|+1": 1
+    }]
+  })
+
 export {
   user_list,
   user_shelf_books,
   books_list,
   comments,
-  user_msg
+  user_msg,
+  fans,
+  rank
 }

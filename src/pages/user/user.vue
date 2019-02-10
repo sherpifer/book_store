@@ -41,7 +41,6 @@
     },
     data() {
       return {
-        user_name: store.state.user_name,
         vip_day: 7,
         rank: 4,
         fans_num: 20,
@@ -52,14 +51,16 @@
           icon_color: {
             color: '#33a6c3'
           }
-        }, {
-          name: '无限阅读卡',
-          path: '/user/vip',
-          icon: 'icon-huiyuan',
-          icon_color: {
-            color: '#e6bd24'
-          }
-        }, {
+        }, 
+        // {
+        //   name: '无限阅读卡',
+        //   path: '/user/vip',
+        //   icon: 'icon-huiyuan',
+        //   icon_color: {
+        //     color: '#e6bd24'
+        //   }
+        // },
+         {
           name: '好友排名',
           path: '/user/rank',
           icon: 'icon-daxuepaimings',
@@ -77,12 +78,15 @@
       }
     },
     computed: {
-      new_msg_count: function() {
+      new_msg_count() {
         return store.state.new_msg_count
       },
-      is_login: function() {
+      is_login() {
         return store.state.is_login
-      }
+      },
+       user_name(){
+         return store.state.user_name
+       }
     }
   }
 </script>
