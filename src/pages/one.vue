@@ -16,7 +16,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="less">
+<style lang="less" scoped >
 .container {
   width: 90%;
   margin:0 auto;

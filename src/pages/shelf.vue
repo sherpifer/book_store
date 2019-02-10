@@ -43,7 +43,7 @@
     methods: {
       getBooks() {
         Service.getShelfBooks().then(res => {
-          this.books = res.data.books
+          this.books = res.data.data.books
         })
       },
       switchEdit() {

@@ -5,7 +5,8 @@ import {
   user_list,
   user_shelf_books,
   books_list,
-  comments
+  comments,
+  user_msg
 } from './data'
 
 /*** 设置随机的接口响应时间，10-2500毫秒 ***/
@@ -22,7 +23,9 @@ Mock.mock(/^\/user\?user_name=/, 'get', (options) => {
   })
   return {
     retCode: 0,
-    users: users
+    data: {
+      users: users
+    }
   }
 })
 
@@ -74,7 +77,9 @@ Mock.mock(/^\/detail\//, 'get', (options) => {
   }
   return {
     retCode: 0,
-    book: target_book
+    data: {
+      book: target_book
+    }
   }
 })
 
@@ -104,7 +109,9 @@ Mock.mock('/shelf', 'get', () => {
   })
   return {
     retCode: 0,
-    books: shelf_books
+    data: {
+      books: shelf_books
+    }
   }
 })
 
@@ -112,7 +119,7 @@ Mock.mock('/shelf', 'get', () => {
 Mock.mock('/comments', 'get', () => {
   return {
     retCode: 0,
-    comments: comments.comments
+    data: comments
   }
 })
 
@@ -120,7 +127,48 @@ Mock.mock('/comments', 'get', () => {
 Mock.mock('/chapter', 'get', () => {
   return {
     retCode: 0,
-    content: Random.cparagraph(55, 80),
-    chapter_title: Random.ctitle(5, 10)
+    data: {
+      content: Random.cparagraph(55, 80),
+      chapter_title: Random.ctitle(5, 10)
+    }
+  }
+})
+
+// 获取用户所有信息
+Mock.mock('/api/usermsg', 'get', () => {
+  return {
+    retCode: 0,
+    data: {
+      user_msg: user_msg.msg
+    }
+  }
+})
+
+// 获取用户新信息
+Mock.mock('/api/newmsg', 'get', () => {
+  let new_msg = user_msg.msg.filter((item) => {
+    return item.new_msg == true
+  })
+  return {
+    retCode: 0,
+    data: {
+      new_msg: new_msg
+    }
+  }
+})
+
+// 用户读取信息
+Mock.mock('/api/usermsg', 'put', (options) => {
+  let msg_id = JSON.parse(options.body).msg_id
+  user_msg.msg.forEach((item) => {
+    if (item.id == msg_id) {
+      item.new_msg = false
+    }
+  })
+  return {
+    retCode: 0,
+    data: {
+      user_msg: user_msg.msg
+    }
   }
 })

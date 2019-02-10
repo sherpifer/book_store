@@ -1,24 +1,6 @@
 @charset "utf-8";
-html {
-  background-color: #f1f1f1;
-  color: #000;
-  font-size: 50px;
-}
-
 * {
   box-sizing: border-box;
-}
-
-.mint-indicator-mask {
-  z-index: 2000;
-}
-
-.mint-indicator-wrapper {
-  z-index: 9999;
-}
-
-.mint-toast.is-placemiddle {
-  z-index: 9999;
 }
 
 body,

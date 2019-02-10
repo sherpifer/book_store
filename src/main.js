@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import mock from '../mock/index'
 import './assets/style/reset.css'
+import './assets/style/index.css'
 import './assets/iconfont/iconfont.css'
 //swiper组件
 import VueAwesomeSwiper from 'vue-awesome-swiper'

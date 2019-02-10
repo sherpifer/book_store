@@ -46,7 +46,7 @@
   }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   .rate-start {
     display: inline-block;
     vertical-align: middle;

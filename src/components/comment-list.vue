@@ -52,7 +52,7 @@
         this.common.showLoading()
         Service.getComments().then(res => {
           if (res.data.retCode == 0) {
-            this.comments = this.comments.concat(res.data.comments)
+            this.comments = this.comments.concat(res.data.data.comments)
           }
           this.common.hideLoading()
         })

@@ -1,6 +1,6 @@
 <template>
-  <div :class="{'black-theme':theme=='black-theme'}">
-    <top-nav :showBack="true" :black_theme="theme=='black-theme'"> </top-nav>
+  <div :class="{'black-theme':theme=='black-theme'}" class="page">
+    <top-nav :black_theme="theme=='black-theme'"> </top-nav>
     <div :class="['content-box',theme]" :style="font_size_sytle">
       <p class="chapter-title" v-if="chapter_title">第{{chapters[chapter_index]}}章 ● {{chapter_title}}</p>
       <div class="content" @click="closeWindow">{{content}}</div>
@@ -127,19 +127,18 @@
         this.common.showLoading()
         Service.getChapter(index).then(res => {
           if (res.data.retCode == 0) {
-            this.content = res.data.content
-            this.chapter_title = res.data.chapter_title
+            this.content = res.data.data.content
+            this.chapter_title = res.data.data.chapter_title
           }
+          window.scrollTo(0, 0)
           this.common.hideLoading()
         })
       },
       prev() {
         this.getChapterDetail(--this.chapter_index)
-        window.scrollTo(0, 0)
       },
       next() {
         this.getChapterDetail(++this.chapter_index)
-        window.scrollTo(0, 0)
       }
     },
     activated() {

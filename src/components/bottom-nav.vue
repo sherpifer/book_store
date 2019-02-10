@@ -9,6 +9,7 @@
       <span>书架</span>
     </router-link>
     <router-link tag="div" to="/user" class="btn" active-class="active">
+      <mt-badge v-if="new_msg_count!=0&&is_login" class="badge" type="error" size="small">{{new_msg_count}}</mt-badge>
       <span class="iconfont icon-wode"></span>
       <span>我</span>
     </router-link>
@@ -16,7 +17,23 @@
 </template>
 
 <script>
-  export default {};
+  import Vue from 'vue'
+  import {
+    Badge
+  } from 'mint-ui';
+  Vue.component(Badge.name, Badge);
+  import store from '@/store/store'
+  
+  export default {
+    computed: {
+      new_msg_count() {
+        return store.state.new_msg_count
+      },
+      is_login() {
+        return store.state.is_login
+      }
+    }
+  };
 </script>
 
 <style lang="less">
@@ -31,6 +48,7 @@
     display: flex;
     justify-content: space-around;
     .btn {
+      position: relative;
       font-size: .28rem;
       font-weight: bolder;
       height: 1rem;
@@ -44,6 +62,12 @@
       }
       .iconfont {
         margin-bottom: .05rem;
+      }
+      .badge {
+        line-height: normal;
+        position: absolute;
+        top: -15%;
+        left: 55%;
       }
     }
   }

@@ -30,6 +30,15 @@ const Service = {
   },
   getChapter() {
     return axios.get('/chapter')
+  },
+  getUserMsg() {
+    return axios.get('/api/usermsg')
+  },
+  getNewMsg() {
+    return axios.get('/api/newmsg')
+  },
+  readMsg(params) {
+    return axios.put('/api/usermsg', params)
   }
 }
 

@@ -1,0 +1,25 @@
+html {
+  background-color: #f1f1f1;
+  color: #000;
+  font-size: 50px;
+}
+
+.page {
+  height: 100vh;
+  width: 100vh;
+  overflow: scroll;
+  box-shadow: -5px 0 10px -5px rgb(0, 0, 0, 0.3);
+  ;
+}
+
+.mint-indicator-mask {
+  z-index: 2000;
+}
+
+.mint-indicator-wrapper {
+  z-index: 9999;
+}
+
+.mint-toast.is-placemiddle {
+  z-index: 9999;
+}

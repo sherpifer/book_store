@@ -82,9 +82,29 @@ var comments = Mock.mock({
   }]
 })
 
+// 新信息
+var user_msg = Mock.mock({
+  "msg|4-8": [{
+    "id|+1": 0,
+    "created_at|1": [
+      Random.date("2018-MM-dd") + ' ' + Mock.mock('@time("HH:mm")'),
+      Random.date("2018-MM-dd") + ' ' + Mock.mock('@time("HH:mm")'),
+      Random.date("2018-MM-dd") + ' ' + Mock.mock('@time("HH:mm")'),
+      Random.date("2018-MM-dd") + ' ' + Mock.mock('@time("HH:mm")')
+    ],
+    "content|1": [
+      Random.cparagraph(3, 6),
+      Random.cparagraph(3, 6),
+      Random.cparagraph(3, 6),
+      Random.cparagraph(3, 6)
+    ],
+    "new_msg": true
+  }]
+})
 export {
   user_list,
   user_shelf_books,
   books_list,
-  comments
+  comments,
+  user_msg
 }

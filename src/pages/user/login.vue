@@ -1,6 +1,6 @@
 <template>
   <div class="login-page">
-    <top-nav title="登陆" :showBack="true" :goBackHome="go_back_home">
+    <top-nav title="登陆"  :goBackHome="go_back_home">
       <router-link to="/register" class="register-btn">注册</router-link>
     </top-nav>
     <div class="login-form">

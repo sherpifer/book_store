@@ -1,25 +1,35 @@
 <template>
-  <div class="user-page" >
-    <top-nav :title="user_name">
+  <div class="user-page">
+    <top-nav :title="user_name" :showBack="false">
       <router-link class="iconfont icon-shezhi" to="/setting"></router-link>
     </top-nav>
     <div class="avatar-box">
       <img class="avatar" src="/static/imgs/user.png">
     </div>
     <div class="user-info">
-      <div class="item" v-for="(item,index) in info_list" :key="index">
+      <router-link class="item" v-for="(item,index) in info_list" :key="index" :to="{'path':item.path}">
         <p class="item-title">
           <span :class="['iconfont',item.icon]" :style="item.icon_color"></span> <span class="title">{{item.name}}</span>
         </p>
-        <p class="item-content">{{item.content}}</p>
-        <!-- <span class="iconfont icon-jiantouyou"></span> -->
-      </div>
+        <div class="item-content">
+          <span v-if="item.name=='无限阅读卡'">还剩<b>{{vip_day}}</b>天</span>
+          <span v-if="item.name=='好友排名'">第<b>{{rank}}</b>名</span>
+          <span v-if="item.name=='关注'"><b>{{fans_num}}</b>人关注我</span>
+          <mt-badge v-if="item.name=='信息'&& new_msg_count!=0&&is_login" class="badge" type="error" size="small">{{ new_msg_count}}</mt-badge>
+        </div>
+      </router-link>
     </div>
     <bottom-nav></bottom-nav>
   </div>
 </template>
 
 <script>
+  import Vue from 'vue'
+  import {
+    Badge
+  } from 'mint-ui';
+  
+  Vue.component(Badge.name, Badge);
   import topNav from "@/components/top-nav"
   import bottomNav from "@/components/bottom-nav"
   import store from "@/store/store"
@@ -32,31 +42,46 @@
     data() {
       return {
         user_name: store.state.user_name,
+        vip_day: 7,
+        rank: 4,
+        fans_num: 20,
         info_list: [{
-            name: '无限阅读卡',
-            icon:'icon-huiyuan',
-            icon_color:{
-              color:'#e6bd24'
-            },
-            content:'还剩7天'
-          },
-          {
-            name: '好友排名',
-             icon:'icon-daxuepaimings',
-            icon_color:{
-              color:'#7cc37c'
-            },
-             content:'第4名'
-          },
-          {
-            name: '关注',
-             icon:'icon-31guanzhu1xuanzhong',
-            icon_color:{
-              color:'#d25f73'
-            } ,
-            content:'24人关注我'
+          name: '信息',
+          path: '/user/message',
+          icon: 'icon-xiaoxi',
+          icon_color: {
+            color: '#33a6c3'
           }
-        ]
+        }, {
+          name: '无限阅读卡',
+          path: '/user/vip',
+          icon: 'icon-huiyuan',
+          icon_color: {
+            color: '#e6bd24'
+          }
+        }, {
+          name: '好友排名',
+          path: '/user/rank',
+          icon: 'icon-daxuepaimings',
+          icon_color: {
+            color: '#7cc37c'
+          }
+        }, {
+          name: '关注',
+          path: '/user/fans',
+          icon: 'icon-31guanzhu1xuanzhong',
+          icon_color: {
+            color: '#d25f73'
+          }
+        }]
+      }
+    },
+    computed: {
+      new_msg_count: function() {
+        return store.state.new_msg_count
+      },
+      is_login: function() {
+        return store.state.is_login
       }
     }
   }
@@ -66,9 +91,9 @@
   .user-page {
     width: 100vw;
     height: 100vh;
-    .icon-shezhi{
-      font-size:.4rem;
-      color:black;
+    .icon-shezhi {
+      font-size: .4rem;
+      color: black;
     }
     .avatar-box {
       width: 100vw;
@@ -95,10 +120,11 @@
       padding-top: 0.4rem;
       background: #fff;
       .item {
-        font-size:.3rem;
+        color: black;
+        font-size: .3rem;
         line-height: 1.5rem;
         width: 100vw;
-        padding:0 .3rem;
+        padding: 0 .3rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -106,12 +132,22 @@
         &:not(:last-child) {
           border-bottom: 0.03rem solid #f1f1f1;
         }
-        .iconfont{
-          font-size:0.5rem;
-          vertical-align: middle;
-          margin-right:.25rem;
+        .item-content {
+          b {
+            padding: 0 .1rem;
+            font-size: .4rem;
+            font-weight: 600;
+          }
+          .badge {
+            line-height: normal!important;
+          }
         }
-        .title{
+        .iconfont {
+          font-size: 0.5rem;
+          vertical-align: middle;
+          margin-right: .25rem;
+        }
+        .title {
           vertical-align: middle;
         }
       }

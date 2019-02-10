@@ -21,7 +21,7 @@
       },
       showBack: {
         type: Boolean,
-        default: false
+        default: true
       }
     },
     data() {
@@ -68,6 +68,10 @@
       left: 0.2rem;
     }
     .right-box {
+      line-height: normal;
+      display:flex;
+      justify-content: center;
+      align-items: center;
       font-size: 0.32rem;
       position: absolute;
       top: 50%;

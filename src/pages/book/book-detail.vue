@@ -1,7 +1,7 @@
 <template>
-  <div class="detail-page">
+  <div class="detail-page page">
     <div class="top-part">
-      <top-nav :showBack="true">
+      <top-nav>
         <!-- 加入书架 -->
         <p v-if="book_detail.is_fav" class="fav-btn" @click="removeFav">移出书架 <span class="red-bg iconfont icon-shoucang2"></span></p>
         <p v-else class="fav-btn" @click="addFav">加入书架 <span class=" iconfont icon-shoucang1"></span></p>
@@ -81,7 +81,7 @@
       this.book_id = this.$route.params.book_id
       this.book_detail = {}
       Service.getBookDetail(this.$route.params.book_id).then(res => {
-        this.book_detail = res.data.book
+        this.book_detail = res.data.data.book
         if (this.book_detail.desc.length > 45) {
           this.book_detail.complete_desc = this.book_detail.desc
           this.book_detail.desc = this.book_detail.desc.slice(0, 45)
@@ -253,14 +253,14 @@
       }
       .book-intro {
         .title {
-          font-size: 0.4rem;
+          font-size: 0.34rem;
           font-weight: 900;
           margin: 0.25rem 0;
         }
         .content {
           text-align: justify;
           text-indent: 0.5rem;
-          font-size: 0.37rem;
+          font-size: 0.34rem;
           line-height: 0.55rem;
           .more {
             color: rgb(57, 127, 185);

@@ -1,6 +1,6 @@
 <template>
   <div class="register-page">
-    <top-nav title="注册" :showBack="true"></top-nav>
+    <top-nav title="注册" ></top-nav>
     <div class="register-form">
       <p class="form-item">
         <label>用户名</label>
@@ -54,7 +54,7 @@
           this.user_name_err = false
           // 检测用户名的唯一性
           Service.checkAccount(this.user_name).then((res) => {
-            if (res.data.users.length == 0) {
+            if (res.data.data.users.length == 0) {
               this.user_name_only = true
             } else {
               this.user_name_only = false
