@@ -28,6 +28,8 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 项目图标是 阿里巴巴iconfont  
 
 # project show
-<img src="https://github.com/sherpifer/book_store/blob/master/projectImgShow/01.png" alt="index page" width="200"> <img src="https://github.com/sherpifer/book_store/blob/master/projectImgShow/02.png" alt="book detail page" width="200"><img src="https://github.com/sherpifer/book_store/blob/master/projectImgShow/03.png" alt="comment page" width="200">
+<img src="https://github.com/sherpifer/book_store/blob/master/projectImgShow/01.png" alt="index page" width="200"><img src="https://github.com/sherpifer/book_store/blob/master/projectImgShow/07.png" alt="search page" width="200"><img src="https://github.com/sherpifer/book_store/blob/master/projectImgShow/08.png" alt="search result page" width="200"><img src="https://github.com/sherpifer/book_store/blob/master/projectImgShow/06.png" alt="user shelf page" width="200">
 
-<img src="https://github.com/sherpifer/book_store/blob/master/projectImgShow/04.png" alt="read page" width="200"><img src="https://github.com/sherpifer/book_store/blob/master/projectImgShow/05.png" alt="user center page" width="200"><img src="https://github.com/sherpifer/book_store/blob/master/projectImgShow/06.png" alt="user shelf page" width="200">
+<img src="https://github.com/sherpifer/book_store/blob/master/projectImgShow/02.png" alt="book detail page" width="200"><img src="https://github.com/sherpifer/book_store/blob/master/projectImgShow/03.png" alt="comment page" width="200"><img src="https://github.com/sherpifer/book_store/blob/master/projectImgShow/04.png" alt="read page" width="200"><img src="https://github.com/sherpifer/book_store/blob/master/projectImgShow/05.png" alt="user center page" width="200">
+ 
+<img src="https://github.com/sherpifer/book_store/blob/master/projectImgShow/09.png" alt="user message page" width="200"><img src="https://github.com/sherpifer/book_store/blob/master/projectImgShow/10.png" alt="user rank page" width="200">
