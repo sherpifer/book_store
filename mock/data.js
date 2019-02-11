@@ -8,7 +8,7 @@ var user_list = [{
 }]
 
 // 用户加入书架的书本
-var user_shelf_books = [{ book_id: 0 }, { book_id: 1 }, { book_id: 2 }]
+var user_shelf_books = [{ book_id: 0 }]
 
 // 书信息
 var books_list = [{

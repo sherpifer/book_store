@@ -12,6 +12,7 @@ const store = new Vuex.Store({
   },
   mutations: {
     loginSuccess(state, params) {
+      console.log(params)
       state.is_login = true
       sessionStorage['is_login'] = true
       sessionStorage['user_name'] = params.user_name
@@ -40,6 +41,7 @@ const store = new Vuex.Store({
 })
 
 if (sessionStorage['is_login'] == "true") {
-  store.commit('loginSuccess', sessionStorage['user_name'])
+
+  store.commit('loginSuccess', { user_name: sessionStorage['user_name'] })
 }
 export default store
