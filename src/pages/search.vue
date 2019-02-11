@@ -140,6 +140,9 @@
           }
         }
         his_arr.unshift(str)
+        if (his_arr.length > 20) {
+          his_arr.pop()
+        }
         this.his_list = his_arr
         this.kw = str
         storageModule.setItem('search_history', his_arr.join(','))

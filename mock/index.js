@@ -206,7 +206,7 @@ Mock.mock('/api/rank', 'get', () => {
 
 // 获取模糊搜索书本关键词
 Mock.mock(/^\/api\/book\?kw\=/, 'get', (options) => {
-  let kw = options.url.match(/\?kw\=(\w+)/)[1]
+  let kw = options.url.match(/\?kw\=(.*)+/)[1]
   let kw_list = []
   for (let i = 0; i < 25; i++) {
     kw_list.push(kw + Mock.mock("@cword(1,5)"))
