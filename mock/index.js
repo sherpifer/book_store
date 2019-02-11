@@ -99,7 +99,12 @@ Mock.mock(/^\/api\/detail\//, 'get', (options) => {
 //添加图书进书架
 Mock.mock('/api/shelf', 'post', (options) => {
   let book_id = JSON.parse(options.body).book_id
-  user_shelf_books.push({ book_id: book_id })
+  let res = user_shelf_books.filter(item => {
+    return item.book_id == book_id
+  })
+  if (res.length == 0) {
+    user_shelf_books.push({ book_id: book_id })
+  }
   return { retCode: 0 }
 })
 

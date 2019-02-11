@@ -87,9 +87,6 @@
         }
       },
       register: function() {
-        this.checkUserName()
-        this.checkPwd()
-        this.checkRepeatPwd()
         if (this.pwd && this.repeat_pwd && this.user_name && this.user_name_only && !this.user_name_err && !this.pwd_err && !this.repeat_pwd_err) {
           this.common.showLoading()
           Service.register({

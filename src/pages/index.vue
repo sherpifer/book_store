@@ -19,7 +19,9 @@
         <router-link class="link-btn" to="free" active-class="active"><span class='iconfont icon-yuedu'></span>免费专栏</router-link>
       </div>
       <div class="column-content">
- <keep-alive><router-view></router-view></keep-alive>
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
       </div>
     </div>
     <bottom-nav></bottom-nav>
@@ -74,13 +76,13 @@
     padding-bottom: 4rem;
     height: 100vh;
   }
+  
   .cloumn-box {
-     width: 100vw;
-     .column-content{
-       min-height:5rem;
-       width:100vw;
-       background:#fff;
-     }
+    width: 100vw;
+    .column-content {
+      min-height: 5rem;
+      width: 100vw;
+    }
     .cloumn-nav {
       width: 90vw;
       margin: 0 auto;
@@ -88,7 +90,7 @@
       justify-content: space-between;
       .link-btn {
         transition: all .2s ease-in-out;
-        line-height: 1rem;
+        line-height: 1.3rem;
         font-size: 0.34rem;
         color: black;
         font-weight: 600;

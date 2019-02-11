@@ -11,7 +11,7 @@ const Service = {
     return axios.post('/api/login', params)
   },
   checkAccount(user_name) {
-    return axios.get(`/user?user_name=${user_name}`)
+    return axios.get(`/api/user?user_name=${user_name}`)
   },
   getBooks() {
     return axios.get('/api/allbooks')
