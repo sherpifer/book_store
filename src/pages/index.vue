@@ -1,7 +1,7 @@
 <template>
   <div class="index-page">
     <top-nav title="轻松阅读" :showBack="false"></top-nav>
-    <router-link to="/index/search" class="search-box" >
+    <router-link to="/index/search" class="search-box">
       <div class="input"><span class="search-icon iconfont icon-sousuo1"></span> <span>大家都在搜索 “经典文学”</span></div>
     </router-link>
     <mt-swipe :auto="3000" class="wrapper">
@@ -17,16 +17,17 @@
 
 <script>
   import Vue from 'vue'
-  import bottomNav from "@/components/bottom-nav";
-  import topNav from "@/components/top-nav";
-  import recommend from "@/components/recommend";
+  import bottomNav from '@/components/bottom-nav'
+  import topNav from '@/components/top-nav'
+  import recommend from '@/components/recommend'
+  import Service from '@/service/service'
   import {
     Swipe,
     SwipeItem
-  } from 'mint-ui';
+  } from 'mint-ui'
   
-  Vue.component(Swipe.name, Swipe);
-  Vue.component(SwipeItem.name, SwipeItem);
+  Vue.component(Swipe.name, Swipe)
+  Vue.component(SwipeItem.name, SwipeItem)
   
   export default {
     components: {
@@ -36,31 +37,7 @@
     },
     data() {
       return {
-        books: [{
-            id: 0,
-            title: "解忧杂货铺",
-            author: "东野圭吾",
-            cover_img: "/static/imgs/jyzhp.png"
-          },
-          {
-            id: 1,
-            title: "恶意",
-            author: "东野圭吾",
-            cover_img: "/static/imgs/ey.png"
-          },
-          {
-            id: 2,
-            title: "秘密",
-            author: "东野圭吾",
-            cover_img: "/static/imgs/mm.png"
-          },
-          {
-            id: 3,
-            title: "时生",
-            author: "东野圭吾",
-            cover_img: "/static/imgs/sf.png"
-          }
-        ],
+        books: [],
         bannerList: [{
             url: "/static/imgs/banner02.png"
           },
@@ -68,11 +45,17 @@
             url: "/static/imgs/banner03.png"
           }
         ]
-      };
+      }
     },
-    created: function() {},
+    created: function() {
+      Service.getBooks().then(res => {
+        if (res.data.retCode == 0) {
+          this.books = res.data.data.books_list
+        }
+      })
+    },
     methods: {}
-  };
+  }
 </script>
 
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
@@ -98,8 +81,8 @@
       background: #fff;
       border-radius: .3rem;
       .search-icon {
-        font-weight:900;
-          color: #969696;
+        font-weight: 900;
+        color: #969696;
         position: absolute;
         top: 50%;
         left: .5rem;

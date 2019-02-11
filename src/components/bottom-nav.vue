@@ -1,14 +1,14 @@
 <template>
   <div class="footer">
-    <router-link tag="div" to="/index" class="btn" active-class="active">
+    <router-link tag="div" :to="{path:'/index'}" class="btn" active-class="active">
       <span class="iconfont icon-faxian"></span>
       <span>发现</span>
     </router-link>
-    <router-link tag="div" to="/shelf" class="btn" active-class="active">
+    <router-link tag="div" :to="{path:'/shelf'}" class="btn" active-class="active">
       <span class="iconfont icon-fenlei"></span>
       <span>书架</span>
     </router-link>
-    <router-link tag="div" to="/user" class="btn" active-class="active">
+    <router-link tag="div" :to="{path:'/user'}" class="btn" active-class="active">
       <mt-badge v-if="new_msg_count!=0&&is_login" class="badge" type="error" size="small">{{new_msg_count}}</mt-badge>
       <span class="iconfont icon-wode"></span>
       <span>我</span>

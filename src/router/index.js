@@ -27,6 +27,9 @@ const router = new Router({
     }, {
       path: '/index',
       name: 'index',
+      meta: {
+        keepAlive: true
+      },
       component: indexComponent
         // redirect: '/index/one',
         // children: [{
@@ -75,7 +78,8 @@ const router = new Router({
       path: '/user',
       name: 'user',
       meta: {
-        requireAuth: true
+        requireAuth: true,
+        keepAlive: true
       },
       component: userComponent
     }, {

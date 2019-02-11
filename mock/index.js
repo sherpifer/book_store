@@ -13,12 +13,12 @@ import {
 
 /*** 设置随机的接口响应时间，10-2500毫秒 ***/
 Mock.setup({
-  timeout: '10-1000'
+  timeout: '10-600'
 })
 
 
 // 检查账号的唯一性
-Mock.mock(/^\/user\?user_name=/, 'get', (options) => {
+Mock.mock(/^\/api\/user\?user_name=/, 'get', (options) => {
   let user_name = options.url.match(/\?user_name=(\w+)/)[1]
   let users = user_list.filter(item => {
     return item.user_name == user_name
@@ -32,14 +32,14 @@ Mock.mock(/^\/user\?user_name=/, 'get', (options) => {
 })
 
 // 注册
-Mock.mock('/user', 'post', (options) => {
+Mock.mock('/api/user', 'post', (options) => {
   console.log('新增用户', JSON.parse(options.body))
   user_list.push(JSON.parse(options.body))
   return { retCode: 0 }
 })
 
 //登录
-Mock.mock('/login', 'post', (options) => {
+Mock.mock('/api/login', 'post', (options) => {
     let user = JSON.parse(options.body)
     let target_user = user_list.filter((item) => {
       if (item.user_name == user.user_name) {
@@ -70,7 +70,7 @@ Mock.mock('/api/allbooks', 'get', () => {
 })
 
 // 获取书本详情
-Mock.mock(/^\/detail\//, 'get', (options) => {
+Mock.mock(/^\/api\/detail\//, 'get', (options) => {
   let book_id = options.url.match(/\/detail\/(\w+)/)[1]
   let target_book = (books_list.filter(function(item) {
     return item.id == book_id
@@ -95,14 +95,14 @@ Mock.mock(/^\/detail\//, 'get', (options) => {
 })
 
 //添加图书进书架
-Mock.mock('/shelf', 'post', (options) => {
+Mock.mock('/api/shelf', 'post', (options) => {
   let book_id = JSON.parse(options.body).book_id
   user_shelf_books.push({ book_id: book_id })
   return { retCode: 0 }
 })
 
 // 把图书从书架移除
-Mock.mock('/shelf', 'put', (options) => {
+Mock.mock('/api/shelf', 'put', (options) => {
   let book_ids = JSON.parse(options.body).book_ids
   book_ids.forEach(book_id => {
     user_shelf_books.splice(user_shelf_books.findIndex(item => { return item.book_id == book_id }), 1)
@@ -111,7 +111,7 @@ Mock.mock('/shelf', 'put', (options) => {
 })
 
 // 获取书架图书
-Mock.mock('/shelf', 'get', () => {
+Mock.mock('/api/shelf', 'get', () => {
   let shelf_books = []
   user_shelf_books.forEach(book => {
     shelf_books.push(books_list.find(function(item) {
@@ -127,7 +127,7 @@ Mock.mock('/shelf', 'get', () => {
 })
 
 // 获取图书的评论
-Mock.mock('/comments', 'get', () => {
+Mock.mock('/api/comments', 'get', () => {
   return {
     retCode: 0,
     data: comments
@@ -135,7 +135,7 @@ Mock.mock('/comments', 'get', () => {
 })
 
 // 获得文章详情
-Mock.mock('/chapter', 'get', () => {
+Mock.mock('/api/chapter', 'get', () => {
   return {
     retCode: 0,
     data: {

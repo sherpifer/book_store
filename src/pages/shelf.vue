@@ -44,6 +44,7 @@
       getBooks() {
         Service.getShelfBooks().then(res => {
           this.books = res.data.data.books
+          this.common.hideLoading()
         })
       },
       switchEdit() {
@@ -85,6 +86,7 @@
       }
     },
     created() {
+      this.common.showLoading()
     },
     activated() {
       this.getBooks()
