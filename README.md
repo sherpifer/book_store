@@ -20,9 +20,9 @@ npm run build --report
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 # book_store
-主要运用了Vue2.0，Vue-Router，Vuex，axios，mock.js 和 mint UI
-实现了阅读网站的基本功能
-用vue提供的过渡效果实现左右滑动的页面切换
+主要运用了Vue2.0，Vue-Router，Vuex，axios，mock.js 和 mint UI  
+实现了阅读网站的基本功能  
+用vue提供的过渡效果实现左右滑动的页面切换 
 用vuex实现整个项目登录等状态的管理  
 编写公用组件(登录组件，导航栏组件等)在多个页面进行调用  
 封装多个公用模块在页面中进行调用  
