@@ -3,7 +3,7 @@
     <top-nav title="搜索"></top-nav>
     <div class="search-box">
       <div class="input-box">
-        <input type="text" placeholder="东野圭吾" v-model="kw" @keyup="typing">
+        <input type="text" v-focus placeholder="东野圭吾" v-model="kw" @keyup="typing">
         <span class="del-btn iconfont icon-shanchu" @click="delKw"></span>
       </div>
       <div class="search-btn" :class="{'active':can_search}" @click="search(kw)">
