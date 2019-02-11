@@ -57,13 +57,13 @@ var books_list = [{
 var writer_list = [{
   "id": 0,
   "writer": "东野圭吾",
-  "label": "悬疑类知名作家",
+  "label": "著名推理小说作家",
   "cover_img": "/static/imgs/dygw.png",
   "intro": 'sdfsd经典款风华绝代看来减肥抗衰老的肌肤上来看'
 }, {
   "id": 0,
   "writer": "萨士比亚",
-  "label": "悬疑类知名作家",
+  "label": "剧作家,艺术家",
   "cover_img": "/static/imgs/ssby.png",
   "intro": 'sdfsd经典款风华绝代看来减肥抗衰老的肌肤上来看'
 }, {

@@ -23,6 +23,11 @@
     },
     watch: {
       '$route' (to, from) {
+        let no_transition = ['hot','activity','free', 'shelf', 'user']
+        if (no_transition.includes(to.name) && no_transition.includes(from.name)) {
+          this.transitionName = ''
+          return
+        }
         const toDepth = to.path.split('/').length
         const fromDepth = from.path.split('/').length
         if (toDepth == fromDepth) {
@@ -31,13 +36,8 @@
           this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
         }
       }
-    },
-    created() {
-      // Service.getUserMsg()
-      //     Service.readMsg({msg_id:2})
-      //     Service.getNewMsg()
     }
-  };
+  }
 </script>
 
 <style lang="less" scoped>

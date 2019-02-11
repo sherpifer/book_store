@@ -36,14 +36,23 @@ const router = new Router({
       children: [{
         path: 'free',
         name: 'free',
+        meta: {
+          keepAlive: true
+        },
         component: freeComponent
       }, {
         path: 'activity',
         name: 'activity',
+        meta: {
+          keepAlive: true
+        },
         component: activityComponent
       }, {
         path: 'hot',
         name: 'hot',
+        meta: {
+          keepAlive: true
+        },
         component: hotComponent
       }]
     },

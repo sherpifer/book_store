@@ -1,7 +1,7 @@
 <template>
   <div class="index-page page">
     <top-nav title="轻松阅读" :showBack="false"></top-nav>
-    <router-link to="/index/search" class="search-box">
+    <router-link :to="{name:'search'}" class="search-box">
       <div class="input"><span class="search-icon iconfont icon-sousuo1"></span> <span>大家都在搜索 “经典文学”</span></div>
     </router-link>
     <mt-swipe :auto="3000" class="wrapper">
