@@ -8,7 +8,9 @@ import {
   comments,
   user_msg,
   fans,
-  rank
+  rank,
+  writer_list,
+  activity_list
 } from './data'
 
 /*** 设置随机的接口响应时间，10-2500毫秒 ***/
@@ -215,6 +217,26 @@ Mock.mock(/^\/api\/book\?kw\=/, 'get', (options) => {
     retCode: 0,
     data: {
       kw_list: kw_list
+    }
+  }
+})
+
+// 获取所有热门作家信息
+Mock.mock('/api/writers', 'get', () => {
+  return {
+    retCode: 0,
+    data: {
+      writer_list: writer_list
+    }
+  }
+})
+
+// 获取活动列表
+Mock.mock('/api/activity', 'get', () => {
+  return {
+    retCode: 0,
+    data: {
+      activity_list: activity_list
     }
   }
 })

@@ -1,5 +1,5 @@
 <template>
-  <div class="index-page">
+  <div class="index-page page">
     <top-nav title="轻松阅读" :showBack="false"></top-nav>
     <router-link to="/index/search" class="search-box">
       <div class="input"><span class="search-icon iconfont icon-sousuo1"></span> <span>大家都在搜索 “经典文学”</span></div>
@@ -9,8 +9,19 @@
         <img :src="item.url" alt>
       </mt-swipe-item>
     </mt-swipe>
-    <recommend recommendTitle="热门读物" :bookList="books"></recommend>
-    <recommend recommendTitle="热门作家" spanTitle="东野圭吾" :bookList="books"></recommend>
+    <recommend recommendTitle="推荐" :bookList="books"></recommend>
+    <!-- <recommend recommendTitle="热门作家" spanTitle="东野圭吾" :bookList="books"></recommend> -->
+    <!-- 专栏 子路由页面 -->
+    <div class="cloumn-box">
+      <div class="cloumn-nav">
+        <router-link class="link-btn" to="hot" active-class="active"><span class='iconfont icon-yuedu'></span>热门作家</router-link>
+        <router-link class="link-btn" to="activity" active-class="active"><span class='iconfont icon-yuedu'></span>活动专栏</router-link>
+        <router-link class="link-btn" to="free" active-class="active"><span class='iconfont icon-yuedu'></span>免费专栏</router-link>
+      </div>
+      <div class="column-content">
+ <keep-alive><router-view></router-view></keep-alive>
+      </div>
+    </div>
     <bottom-nav></bottom-nav>
   </div>
 </template>
@@ -62,6 +73,40 @@
 <style lang='less' scoped>
   .index-page {
     padding-bottom: 4rem;
+  }
+  
+  .cloumn-box {
+     width: 100vw;
+     .column-content{
+       min-height:5rem;
+       width:100vw;
+       background:#fff;
+     }
+    .cloumn-nav {
+      width: 90vw;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      .link-btn {
+        transition: all .2s ease-in-out;
+        line-height: 1rem;
+        font-size: 0.34rem;
+        color: black;
+        font-weight: 600;
+        .icon-yuedu {
+          font-size: 0.38rem;
+          margin-right: .1rem;
+          display: none;
+        }
+        &.active {
+          font-size: 0.38rem;
+          color: #801872;
+          .icon-yuedu {
+            display: inline-block
+          }
+        }
+      }
+    }
   }
   
   .search-box {

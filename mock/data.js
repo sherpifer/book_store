@@ -53,6 +53,27 @@ var books_list = [{
   }
 ]
 
+// 作家
+var writer_list = [{
+  "id": 0,
+  "writer": "东野圭吾",
+  "label": "悬疑类知名作家",
+  "cover_img": "/static/imgs/dygw.png",
+  "intro": 'sdfsd经典款风华绝代看来减肥抗衰老的肌肤上来看'
+}, {
+  "id": 0,
+  "writer": "萨士比亚",
+  "label": "悬疑类知名作家",
+  "cover_img": "/static/imgs/ssby.png",
+  "intro": 'sdfsd经典款风华绝代看来减肥抗衰老的肌肤上来看'
+}, {
+  "id": 0,
+  "writer": "辛夷坞",
+  "label": "现代文学作家",
+  "cover_img": "/static/imgs/xyw.png",
+  "intro": 'sdfsd经典款风华绝代看来减肥抗衰老的肌肤上来看'
+}]
+
 // 评论
 var comments = Mock.mock({
   "comments|8": [{
@@ -150,6 +171,17 @@ var rank =
     }]
   })
 
+// 活动列表
+var activity_list = [{
+  "name": "世界读书日活动",
+  "cover_img": "/static/imgs/banner01.png",
+  "intro": "都是借口分手了就分开了圣诞节分开了世界的看法理解就是看到了就分开了圣诞节反馈"
+}, {
+  "name": "世界读书日活动",
+  "cover_img": "/static/imgs/banner01.png",
+  "intro": "都是借口分手了就分开了圣诞节分开了世界的看法理解就是看到了就分开了圣诞节反馈"
+}]
+
 export {
   user_list,
   user_shelf_books,
@@ -157,5 +189,7 @@ export {
   comments,
   user_msg,
   fans,
-  rank
+  rank,
+  writer_list,
+  activity_list
 }

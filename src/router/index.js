@@ -1,14 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import indexComponent from '@/pages/index'
+import freeComponent from '@/pages/column/free'
+import activityComponent from '@/pages/column/activity'
+import hotComponent from '@/pages/column/hot'
 import searchComponent from '@/pages/search'
 import userComponent from '@/pages/user/user'
 import messageComponent from '@/pages/user/profile/message'
 import vipComponent from '@/pages/user/profile/vip'
 import rankComponent from '@/pages/user/profile/rank'
 import fansComponent from '@/pages/user/profile/fans'
-import oneComponent from '@/pages/one'
-import twoComponent from '@/pages/two'
 import registerComponent from '@/pages/user/register'
 import loginComponent from '@/pages/user/login'
 import shelfCompoment from '@/pages/shelf'
@@ -30,43 +31,52 @@ const router = new Router({
       meta: {
         keepAlive: true
       },
-      component: indexComponent
-        // redirect: '/index/one',
-        // children: [{
-        //   path: 'one',
-        //   name: 'one',
-        //   component: oneComponent
-        // }, {
-        //   path: 'two',
-        //   name: 'two',
-        //   component: twoComponent
-        // }]
-    }, {
+      component: indexComponent,
+      redirect: '/index/hot',
+      children: [{
+        path: 'free',
+        name: 'free',
+        component: freeComponent
+      }, {
+        path: 'activity',
+        name: 'activity',
+        component: activityComponent
+      }, {
+        path: 'hot',
+        name: 'hot',
+        component: hotComponent
+      }]
+    },
+    {
       path: '/index/search',
       name: 'search',
       component: searchComponent
-    }, {
+    },
+    {
       path: '/book/detail/:book_id',
       name: 'detail',
       meta: {
         keepAlive: true
       },
       component: detailComponent
-    }, {
+    },
+    {
       path: '/book/detail/chapter/:book_id',
       name: 'chapter',
       meta: {
         keepAlive: true
       },
       component: readingComponent
-    }, {
+    },
+    {
       path: '/book/detail/:book_id/writecomment',
       name: 'writecomment',
       meta: {
         requireAuth: true
       },
       component: writeCommentComponent
-    }, {
+    },
+    {
       path: '/shelf',
       name: 'shelf',
       meta: {
@@ -74,7 +84,8 @@ const router = new Router({
         requireAuth: true
       },
       component: shelfCompoment
-    }, {
+    },
+    {
       path: '/user',
       name: 'user',
       meta: {
@@ -82,7 +93,8 @@ const router = new Router({
         keepAlive: true
       },
       component: userComponent
-    }, {
+    },
+    {
       path: '/user/message',
       name: 'message',
       meta: {
@@ -90,14 +102,16 @@ const router = new Router({
         keepAlive: true
       },
       component: messageComponent
-    }, {
+    },
+    {
       path: '/user/vip',
       name: 'vip',
       meta: {
         requireAuth: true
       },
       component: vipComponent
-    }, {
+    },
+    {
       path: '/user/rank',
       name: 'rank',
       meta: {
@@ -112,7 +126,8 @@ const router = new Router({
         requireAuth: true
       },
       component: fansComponent
-    }, {
+    },
+    {
       path: '/setting',
       name: 'setting',
       meta: {
@@ -120,14 +135,16 @@ const router = new Router({
         keepAlive: true
       },
       component: settingComponent
-    }, {
+    },
+    {
       path: '/login',
       name: 'login',
       meta: {
         keepAlive: true
       },
       component: loginComponent
-    }, {
+    },
+    {
       path: '/register',
       name: 'register',
       component: registerComponent

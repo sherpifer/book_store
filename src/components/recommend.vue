@@ -45,9 +45,9 @@
     width: 95vw;
     margin-left: 5vw;
     .title {
-      font-weight: 500;
-      line-height: 0.8rem;
-      font-size: 0.3rem;
+      font-weight: 600;
+      line-height: 1rem;
+      font-size: 0.34rem;
     }
     .recommend-swiper {
       overflow: scroll;
@@ -62,12 +62,12 @@
           height: 2.3rem;
         }
         .book-title {
-          font-size: 0.3rem;
-          margin-top: 0.1rem;
+           margin-top: 0.2rem;
+          font-size: 0.28rem;
         }
         .author {
           font-size: 0.25rem;
-          color: #ccc;
+          color: #a5a4a4;
           margin-top: 0.1rem;
         }
       }

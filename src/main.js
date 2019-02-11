@@ -7,10 +7,6 @@ import mock from '../mock/index'
 import './assets/style/reset.css'
 import './assets/style/index.css'
 import './assets/iconfont/iconfont.css'
-//swiper组件
-import VueAwesomeSwiper from 'vue-awesome-swiper'
-import 'swiper/dist/css/swiper.css'
-Vue.use(VueAwesomeSwiper, /* { options } */ )
 import Mint from 'mint-ui'
 import 'mint-ui/lib/style.css'
 Vue.use(Mint)

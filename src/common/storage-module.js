@@ -1,4 +1,4 @@
-var storageModule = {
+const storageModule = {
   getItem(key) {
     return sessionStorage.getItem(key)
   },

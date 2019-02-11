@@ -51,6 +51,12 @@ const Service = {
   },
   searchBook(kw) {
     return axios.get('/api/book?kw=' + kw)
+  },
+  getWriters() {
+    return axios.get('/api/writers')
+  },
+  getActivity() {
+    return axios.get('/api/activity')
   }
 }
 
