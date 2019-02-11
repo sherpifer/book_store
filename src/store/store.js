@@ -8,6 +8,7 @@ const store = new Vuex.Store({
     is_login: false,
     user_name: '',
     new_msg_count: 0,
+    token: ''
   },
   mutations: {
     loginSuccess(state, params) {
