@@ -98,11 +98,6 @@
 </script>
 
 <style lang='less' scoped>
-  .page {
-    width: 100vw;
-    height: 100vh;
-  }
-  
   .finish-btn {
     color: #ed1254;
   }

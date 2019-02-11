@@ -47,6 +47,7 @@
     height: 1rem;
     display: flex;
     justify-content: space-around;
+    box-shadow: 0 0 .5rem .1rem #00000013;
     .btn {
       position: relative;
       font-size: .28rem;

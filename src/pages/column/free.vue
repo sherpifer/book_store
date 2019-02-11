@@ -2,7 +2,7 @@
 
 <template>
   <div class="list-card">
-    <div class="item-card" v-for="(item,index) in book_list" :key="index">
+    <div class="item-card" v-for="(item,index) in book_list" :key="index"  @click="goDetail(item.id)">
       <img :src="item.cover_img" alt>
       <div class="info">
         <p class="title">《{{item.title}}》</p>
@@ -27,8 +27,17 @@
           this.book_list = res.data.data.books_list
         }
       })
+    },
+    methods:{
+      goDetail(book_id) {
+        this.$router.push({
+          name: 'detail',
+          params: {
+            book_id: book_id
+          }
+        })
+      }
     }
-  
   }
 </script>
 

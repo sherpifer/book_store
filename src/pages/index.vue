@@ -58,14 +58,13 @@
         ]
       }
     },
-    created: function() {
+    activated: function() {
       Service.getBooks().then(res => {
         if (res.data.retCode == 0) {
           this.books = res.data.data.books_list
         }
       })
-    },
-    methods: {}
+    }
   }
 </script>
 
@@ -73,8 +72,8 @@
 <style lang='less' scoped>
   .index-page {
     padding-bottom: 4rem;
+    height: 100vh;
   }
-  
   .cloumn-box {
      width: 100vw;
      .column-content{
