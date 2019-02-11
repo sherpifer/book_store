@@ -4,15 +4,13 @@
       <span>{{recommendTitle}}</span>
       <span class="span-title" v-if="spanTitle">● {{spanTitle}}</span>
     </p>
-    <swiper class="recommend-swiper" :options="swiperOption">
-      <swiper-slide v-for="(item,index) in bookList" :key="index">
-        <div @click="goDetail(item.id)">
-          <img :src="item.cover_img" alt>
-          <p class="book-title">{{item.title}}</p>
-          <p class="author">{{item.author}}</p>
-        </div>
-      </swiper-slide>
-    </swiper>
+    <div class="recommend-swiper">
+      <div class="swiper-slide-block" v-for="(item,index) in bookList" :key="index" @click="goDetail(item.id)">
+        <img :src="item.cover_img" alt>
+        <p class="book-title">{{item.title}}</p>
+        <p class="author">{{item.author}}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -27,19 +25,15 @@
       spanTitle: String
     },
     data() {
-      return {
-        swiperOption: {
-          slidesPerView: 3,
-          spaceBetween: 30,
-          freeMode: true
-        }
-      };
+      return {}
     },
     methods: {
       goDetail(book_id) {
         this.$router.push({
           name: 'detail',
-          params:{book_id:book_id}
+          params: {
+            book_id: book_id
+          }
         })
       }
     }
@@ -56,7 +50,12 @@
       font-size: 0.3rem;
     }
     .recommend-swiper {
-      .swiper-slide {
+      overflow: scroll;
+      white-space: nowrap;
+      .swiper-slide-block {
+        padding-right: .5rem;
+        display: inline-block;
+        width: auto;
         overflow: hidden;
         img {
           width: 1.8rem;

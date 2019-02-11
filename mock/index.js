@@ -40,22 +40,31 @@ Mock.mock('/user', 'post', (options) => {
 
 //登录
 Mock.mock('/login', 'post', (options) => {
-  let user = JSON.parse(options.body)
-  let target_user = user_list.filter((item) => {
-    if (item.user_name == user.user_name) {
-      if (item.password == user.password) {
-        return item.password == user.password
+    let user = JSON.parse(options.body)
+    let target_user = user_list.filter((item) => {
+      if (item.user_name == user.user_name) {
+        if (item.password == user.password) {
+          return item.password == user.password
+        }
+      }
+    })
+    if (target_user.length == 1) {
+      return {
+        retCode: 0,
+        user: target_user[0]
+      }
+    } else {
+      return {
+        retCode: 40401
       }
     }
   })
-  if (target_user.length == 1) {
-    return {
-      retCode: 0,
-      user: target_user[0]
-    }
-  } else {
-    return {
-      retCode: 40401
+  // 获取图书信息
+Mock.mock('/api/allbooks', 'get', () => {
+  return {
+    retCode: 0,
+    data: {
+      books_list: books_list
     }
   }
 })
@@ -191,6 +200,21 @@ Mock.mock('/api/rank', 'get', () => {
     retCode: 0,
     data: {
       rank: rank.data
+    }
+  }
+})
+
+// 获取模糊搜索书本关键词
+Mock.mock(/^\/api\/book\?kw\=/, 'get', (options) => {
+  let kw = options.url.match(/\?kw\=(\w+)/)[1]
+  let kw_list = []
+  for (let i = 0; i < 25; i++) {
+    kw_list.push(kw + Mock.mock("@cword(1,5)"))
+  }
+  return {
+    retCode: 0,
+    data: {
+      kw_list: kw_list
     }
   }
 })

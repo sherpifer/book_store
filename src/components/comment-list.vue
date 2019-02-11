@@ -45,7 +45,7 @@
       },
       goComment() {
         this.$router.push({
-          path: '/writecomment'
+          name: 'writecomment'
         })
       },
       getComments() {

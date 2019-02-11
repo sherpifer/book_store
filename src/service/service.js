@@ -13,6 +13,9 @@ const Service = {
   checkAccount(user_name) {
     return axios.get(`/user?user_name=${user_name}`)
   },
+  getBooks() {
+    return axios.get('/api/allbooks')
+  },
   getBookDetail(book_id) {
     return axios.get(`/detail/${book_id}`)
   },
@@ -45,6 +48,9 @@ const Service = {
   },
   getRank() {
     return axios.get('/api/rank')
+  },
+  searchBook(kw) {
+    return axios.get('/api/book?kw=' + kw)
   }
 }
 

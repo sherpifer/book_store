@@ -84,6 +84,8 @@
         })
       }
     },
+    created() {
+    },
     activated() {
       this.getBooks()
     },

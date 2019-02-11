@@ -36,7 +36,7 @@
   };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   .footer {
     z-index: 3000;
     background: #fff;

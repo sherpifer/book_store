@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import indexComponent from '@/pages/index'
+import searchComponent from '@/pages/search'
 import userComponent from '@/pages/user/user'
 import messageComponent from '@/pages/user/profile/message'
 import vipComponent from '@/pages/user/profile/vip'
@@ -38,21 +39,25 @@ const router = new Router({
         //   component: twoComponent
         // }]
     }, {
-      path: '/detail/:book_id',
+      path: '/index/search',
+      name: 'search',
+      component: searchComponent
+    }, {
+      path: '/book/detail/:book_id',
       name: 'detail',
       meta: {
         keepAlive: true
       },
       component: detailComponent
     }, {
-      path: '/detail/chapter/:book_id',
+      path: '/book/detail/chapter/:book_id',
       name: 'chapter',
       meta: {
         keepAlive: true
       },
       component: readingComponent
     }, {
-      path: '/writecomment',
+      path: '/book/detail/:book_id/writecomment',
       name: 'writecomment',
       meta: {
         requireAuth: true
@@ -62,8 +67,8 @@ const router = new Router({
       path: '/shelf',
       name: 'shelf',
       meta: {
-        requireAuth: true,
-        keepAlive: true
+        keepAlive: true,
+        requireAuth: true
       },
       component: shelfCompoment
     }, {

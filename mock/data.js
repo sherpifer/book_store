@@ -18,7 +18,8 @@ var books_list = [{
     "cover_img": "/static/imgs/jyzhp.png",
     "rate": 4,
     "population": 10,
-    "recomment_num": 353
+    "recomment_num": 353,
+    "intro": Random.cparagraph(3, 4)
   },
   {
     "id": 1,
@@ -27,7 +28,8 @@ var books_list = [{
     "cover_img": "/static/imgs/ey.png",
     "rate": 5,
     "population": 9,
-    "recomment_num": 123
+    "recomment_num": 123,
+    "intro": Random.cparagraph(3, 4)
   },
   {
     "id": 2,
@@ -36,7 +38,8 @@ var books_list = [{
     "cover_img": "/static/imgs/mm.png",
     "rate": 3,
     "population": 12,
-    "recomment_num": 454
+    "recomment_num": 454,
+    "intro": Random.cparagraph(3, 4)
   },
   {
     "id": 3,
@@ -45,7 +48,8 @@ var books_list = [{
     "cover_img": "/static/imgs/sf.png",
     "rate": 2,
     "population": 30,
-    "recomment_num": 1490
+    "recomment_num": 1490,
+    "intro": Random.cparagraph(3, 4)
   }
 ]
 
