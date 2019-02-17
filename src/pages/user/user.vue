@@ -4,7 +4,7 @@
       <router-link class="iconfont icon-shezhi" to="/setting"></router-link>
     </top-nav>
     <div class="avatar-box">
-      <img class="avatar" src="/static/imgs/user.png">
+      <img class="avatar" src="@/assets/imgs/user.png">
     </div>
     <div class="user-info">
       <router-link class="item" v-for="(item,index) in info_list" :key="index" :to="{'path':item.path}">

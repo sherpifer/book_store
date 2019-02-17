@@ -52,10 +52,10 @@
       return {
         books: [],
         bannerList: [{
-            url: "/static/imgs/banner02.png"
+            url:require( "@/assets/imgs/banner02.png")
           },
           {
-            url: "/static/imgs/banner03.png"
+            url:require( "@/assets/imgs/banner03.png")
           }
         ]
       }

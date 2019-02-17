@@ -15,7 +15,7 @@ var books_list = [{
     "id": 0,
     "title": "解忧杂货铺",
     "author": "东野圭吾",
-    "cover_img": "/static/imgs/jyzhp.png",
+    "cover_img": require("@/assets/imgs/jyzhp.png"),
     "rate": 4,
     "population": 10,
     "recomment_num": 353,
@@ -25,7 +25,7 @@ var books_list = [{
     "id": 1,
     "title": "恶意",
     "author": "东野圭吾",
-    "cover_img": "/static/imgs/ey.png",
+    "cover_img": require("@/assets/imgs/ey.png"),
     "rate": 5,
     "population": 9,
     "recomment_num": 123,
@@ -35,7 +35,7 @@ var books_list = [{
     "id": 2,
     "title": "秘密",
     "author": "东野圭吾",
-    "cover_img": "/static/imgs/mm.png",
+    "cover_img": require("@/assets/imgs/mm.png"),
     "rate": 3,
     "population": 12,
     "recomment_num": 454,
@@ -45,7 +45,7 @@ var books_list = [{
     "id": 3,
     "title": "时生",
     "author": "东野圭吾",
-    "cover_img": "/static/imgs/sf.png",
+    "cover_img": require("@/assets/imgs/sf.png"),
     "rate": 2,
     "population": 30,
     "recomment_num": 1490,
@@ -58,19 +58,19 @@ var writer_list = [{
   "id": 0,
   "writer": "东野圭吾",
   "label": "著名推理小说作家",
-  "cover_img": "/static/imgs/dygw.png",
+  "cover_img": require("@/assets/imgs/dygw.png"),
   "intro": 'sdfsd经典款风华绝代看来减肥抗衰老的肌肤上来看'
 }, {
   "id": 0,
   "writer": "萨士比亚",
   "label": "剧作家,艺术家",
-  "cover_img": "/static/imgs/ssby.png",
+  "cover_img": require("@/assets/imgs/ssby.png"),
   "intro": 'sdfsd经典款风华绝代看来减肥抗衰老的肌肤上来看'
 }, {
   "id": 0,
   "writer": "辛夷坞",
   "label": "现代文学作家",
-  "cover_img": "/static/imgs/xyw.png",
+  "cover_img": require("@/assets/imgs/xyw.png"),
   "intro": 'sdfsd经典款风华绝代看来减肥抗衰老的肌肤上来看'
 }]
 
@@ -84,13 +84,13 @@ var comments = Mock.mock({
       Mock.mock("@word(6,15)")
     ],
     "avatar|1": [
-      "/static/imgs/user01.png",
-      "/static/imgs/user02.png",
-      "/static/imgs/user03.png",
-      "/static/imgs/user04.png",
-      "/static/imgs/user05.png",
-      "/static/imgs/user06.png",
-      "/static/imgs/user07.png"
+      require("@/assets/imgs/user01.png"),
+      require("@/assets/imgs/user02.png"),
+      require("@/assets/imgs/user03.png"),
+      require("@/assets/imgs/user04.png"),
+      require("@/assets/imgs/user05.png"),
+      require("@/assets/imgs/user06.png"),
+      require("@/assets/imgs/user07.png")
     ],
     "created_at|1": [
       Random.date("yyyy-MM-dd"),
@@ -137,13 +137,13 @@ var fans = Mock.mock({
       Mock.mock("@word(6,15)")
     ],
     "avatar|1": [
-      "/static/imgs/user01.png",
-      "/static/imgs/user02.png",
-      "/static/imgs/user03.png",
-      "/static/imgs/user04.png",
-      "/static/imgs/user05.png",
-      "/static/imgs/user06.png",
-      "/static/imgs/user07.png"
+      require("@/assets/imgs/user01.png"),
+      require("@/assets/imgs/user02.png"),
+      require("@/assets/imgs/user03.png"),
+      require("@/assets/imgs/user04.png"),
+      require("@/assets/imgs/user05.png"),
+      require("@/assets/imgs/user06.png"),
+      require("@/assets/imgs/user07.png")
     ]
   }]
 })
@@ -159,13 +159,13 @@ var rank =
         Mock.mock("@word(6,15)")
       ],
       "avatar|1": [
-        "/static/imgs/user01.png",
-        "/static/imgs/user02.png",
-        "/static/imgs/user03.png",
-        "/static/imgs/user04.png",
-        "/static/imgs/user05.png",
-        "/static/imgs/user06.png",
-        "/static/imgs/user07.png"
+        require("@/assets/imgs/user01.png"),
+        require("@/assets/imgs/user02.png"),
+        require("@/assets/imgs/user03.png"),
+        require("@/assets/imgs/user04.png"),
+        require("@/assets/imgs/user05.png"),
+        require("@/assets/imgs/user06.png"),
+        require("@/assets/imgs/user07.png")
       ],
       "rank|+1": 1
     }]
@@ -174,11 +174,11 @@ var rank =
 // 活动列表
 var activity_list = [{
   "name": "世界读书日活动",
-  "cover_img": "/static/imgs/banner01.png",
+  "cover_img": require("@/assets/imgs/banner01.png"),
   "intro": "都是借口分手了就分开了圣诞节分开了世界的看法理解就是看到了就分开了圣诞节反馈"
 }, {
   "name": "世界读书日活动",
-  "cover_img": "/static/imgs/banner01.png",
+  "cover_img": require("@/assets/imgs/banner01.png"),
   "intro": "都是借口分手了就分开了圣诞节分开了世界的看法理解就是看到了就分开了圣诞节反馈"
 }]
 

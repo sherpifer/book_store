@@ -36,7 +36,7 @@
         this.rank_list = res.data.data.rank
         // 模拟用户获得第4名的页面效果
         this.rank_list[3].account = store.state.user_name
-        this.rank_list[3].avatar = '/static/imgs/user.png'
+        this.rank_list[3].avatar = require('@/assets/imgs/user.png')
         this.common.hideLoading()
       })
     }
