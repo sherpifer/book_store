@@ -1,22 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import indexComponent from '@/pages/index'
-import freeComponent from '@/pages/column/free'
-import activityComponent from '@/pages/column/activity'
 import hotComponent from '@/pages/column/hot'
-import searchComponent from '@/pages/search'
-import userComponent from '@/pages/user/user'
-import messageComponent from '@/pages/user/profile/message'
-import vipComponent from '@/pages/user/profile/vip'
-import rankComponent from '@/pages/user/profile/rank'
-import fansComponent from '@/pages/user/profile/fans'
-import registerComponent from '@/pages/user/register'
-import loginComponent from '@/pages/user/login'
-import shelfCompoment from '@/pages/shelf'
-import detailComponent from '@/pages/book/book-detail'
-import readingComponent from '@/pages/book/reading'
-import settingComponent from '@/pages/user/setting'
-import writeCommentComponent from '@/pages/book/write-comment'
 import commonFunModule from '@/common/common-fun-module'
 import store from '@/store/store'
 Vue.use(Router)
@@ -34,32 +19,32 @@ const router = new Router({
       component: indexComponent,
       redirect: '/index/hot',
       children: [{
-        path: 'free',
-        name: 'free',
-        meta: {
-          keepAlive: true
-        },
-        component: freeComponent
-      }, {
-        path: 'activity',
-        name: 'activity',
-        meta: {
-          keepAlive: true
-        },
-        component: activityComponent
-      }, {
         path: 'hot',
         name: 'hot',
         meta: {
           keepAlive: true
         },
         component: hotComponent
+      }, {
+        path: 'free',
+        name: 'free',
+        meta: {
+          keepAlive: true
+        },
+        component: resolve => require(['@/pages/column/free'], resolve)
+      }, {
+        path: 'activity',
+        name: 'activity',
+        meta: {
+          keepAlive: true
+        },
+        component: resolve => require(['@/pages/column/activity'], resolve)
       }]
     },
     {
       path: '/index/search',
       name: 'search',
-      component: searchComponent
+      component: resolve => require(['@/pages/search'], resolve)
     },
     {
       path: '/book/detail/:book_id',
@@ -67,7 +52,7 @@ const router = new Router({
       meta: {
         keepAlive: true
       },
-      component: detailComponent
+      component: resolve => require(['@/pages/book/book-detail'], resolve)
     },
     {
       path: '/book/detail/chapter/:book_id',
@@ -75,7 +60,7 @@ const router = new Router({
       meta: {
         keepAlive: true
       },
-      component: readingComponent
+      component: resolve => require(['@/pages/book/reading'], resolve)
     },
     {
       path: '/book/detail/:book_id/writecomment',
@@ -83,7 +68,7 @@ const router = new Router({
       meta: {
         requireAuth: true
       },
-      component: writeCommentComponent
+      component: resolve => require(['@/pages/book/write-comment'], resolve)
     },
     {
       path: '/shelf',
@@ -92,7 +77,7 @@ const router = new Router({
         keepAlive: true,
         requireAuth: true
       },
-      component: shelfCompoment
+      component: resolve => require(['@/pages/shelf'], resolve)
     },
     {
       path: '/user',
@@ -101,7 +86,7 @@ const router = new Router({
         requireAuth: true,
         keepAlive: true
       },
-      component: userComponent
+      component: resolve => require(['@/pages/user/user'], resolve)
     },
     {
       path: '/user/message',
@@ -110,7 +95,7 @@ const router = new Router({
         requireAuth: true,
         keepAlive: true
       },
-      component: messageComponent
+      component: resolve => require(['@/pages/user/profile/message'], resolve)
     },
     {
       path: '/user/vip',
@@ -118,7 +103,7 @@ const router = new Router({
       meta: {
         requireAuth: true
       },
-      component: vipComponent
+      component: resolve => require(['@/pages/user/profile/vip'], resolve)
     },
     {
       path: '/user/rank',
@@ -126,7 +111,7 @@ const router = new Router({
       meta: {
         requireAuth: true
       },
-      component: rankComponent
+      component: resolve => require(['@/pages/user/profile/rank'], resolve)
     },
     {
       path: '/user/fans',
@@ -134,7 +119,7 @@ const router = new Router({
       meta: {
         requireAuth: true
       },
-      component: fansComponent
+      component: resolve => require(['@/pages/user/profile/fans'], resolve)
     },
     {
       path: '/setting',
@@ -143,7 +128,7 @@ const router = new Router({
         requireAuth: true,
         keepAlive: true
       },
-      component: settingComponent
+      component: resolve => require(['@/pages/user/setting'], resolve)
     },
     {
       path: '/login',
@@ -151,12 +136,12 @@ const router = new Router({
       meta: {
         keepAlive: true
       },
-      component: loginComponent
+      component: resolve => require(['@/pages/user/login'], resolve)
     },
     {
       path: '/register',
       name: 'register',
-      component: registerComponent
+      component: resolve => require(['@/pages/user/register'], resolve)
     }
   ]
 })
