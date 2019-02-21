@@ -6,7 +6,7 @@
     <div class="login-form">
       <p>
         <label>用户名</label>
-        <input type="text" v-model="user_name">
+        <input type="text" v-model="user_name" v-focus>
       </p>
       <p>
         <label>密码</label>

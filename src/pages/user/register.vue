@@ -4,7 +4,7 @@
     <div class="register-form">
       <p class="form-item">
         <label>用户名</label>
-        <input type="text" v-model="user_name" placeholder="3位以上字母组成" maxlength="15" @blur="checkUserName">
+        <input type="text" v-model="user_name" placeholder="3位以上字母组成" maxlength="15" @blur="checkUserName" v-focus>
         <span class="user_name_only_icon iconfont icon-dui" v-if="user_name.length>=3&&user_name_only"></span>
       </p>
       <p class="err_tip" v-if="user_name_err">● 请输入3位字母以上组成的用户名</p>
